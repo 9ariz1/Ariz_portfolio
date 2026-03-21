@@ -1388,6 +1388,51 @@
         .send-btn:hover {
             transform: scale(1.1);
         }
+
+        /* Mobile Responsive Fix */
+        @media (max-width: 768px) {
+
+            /* Navbar fix */
+            nav {
+                padding: 0.75rem 1rem;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+
+            nav ul {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+                justify-content: center;
+            }
+
+            nav ul a {
+                font-size: 0.75rem;
+            }
+
+            /* Overflow fix */
+            body {
+                overflow-x: hidden;
+            }
+
+            section {
+                padding: 3rem 1rem;
+            }
+
+            #hero {
+                padding: 8rem 1rem 3rem;
+            }
+
+            /* Contact grid fix */
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            /* About grid fix */
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 
