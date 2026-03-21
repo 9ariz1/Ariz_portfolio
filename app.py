@@ -2,13 +2,13 @@ from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 import requests
 import os
-
+from dotenv import load_dotenv
 
 
 app = Flask(__name__)
 CORS(app)
 
-GROQ_API_KEY = os.getenv("GROQ_API_KEY","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")
+GROQ_API_KEY = os.getenv("GROQ_API_KEY","")
 
 PERSONA = """You are the AI portfolio assistant for Mo Ariz. Speak in first person as Mo.
 
