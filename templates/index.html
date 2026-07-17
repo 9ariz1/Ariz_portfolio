@@ -28,6 +28,18 @@
 </script>
 
     <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            transition: background 0.4s ease, color 0.4s ease;
+        }
+
+        * {
+            transition: all 0.2s ease-in-out;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -46,6 +58,26 @@
             --border: #1e2e1e;
             --card: #111811;
             --glass: rgba(34, 197, 94, 0.08)
+        }
+
+        /* LIGHT MODE */
+        [data-theme="light"] {
+            --bg: #d2d8c8;
+            --bg2: #faf6f6;
+            --bg3: #e4ebf1;
+
+            --text: #030406;
+            --muted: #475569;
+
+            --card: rgba(255, 255, 255, 0.75);
+
+            --border: rgba(15, 23, 42, 0.08);
+
+            --accent: #2563eb;
+            --accent2: #3b82f6;
+            --accent3: #60a5fa;
+
+            --glass: rgba(37, 99, 235, 0.08);
         }
 
         body {
@@ -71,9 +103,18 @@
             justify-content: space-between;
             align-items: center;
             padding: 1rem 2rem;
+
             background: rgba(10, 15, 10, 0.88);
+
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+
             backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border)
+
+            border-bottom: 1px solid var(--border);
+        }
+
+        [data-theme="light"] nav {
+            background: rgba(255, 255, 255, 0.75);
         }
 
         .logo {
@@ -86,9 +127,10 @@
 
         nav ul {
             display: flex;
-            gap: 1.5rem;
+            align-items: center;
+            gap: 1.2rem;
             list-style: none;
-            flex-wrap: wrap
+            flex-wrap: wrap;
         }
 
         nav ul a {
@@ -426,8 +468,10 @@
         }
 
         .intern-card:hover {
-            border-color: rgba(34, 197, 94, 0.35)
+            border-color: rgba(34, 197, 94, 0.35);
+            transform: translateY(-4px)
         }
+
 
         .intern-role {
             font-size: 0.95rem;
@@ -1454,10 +1498,45 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* Toggle Button Fix */
+        .theme-toggle {
+            width: 42px;
+            height: 42px;
+            border-radius: 80%;
+
+            border: 1px solid var(--border);
+
+            background: var(--card);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            cursor: pointer;
+
+            font-size: 1rem;
+
+            color: var(--text);
+
+            transition: all 0.3s ease;
+
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .theme-toggle:hover {
+            transform: translateY(-2px);
+
+            border-color: var(--accent);
+
+            color: var(--accent);
+
+            box-shadow: 0 8px 24px rgba(34, 197, 94, 0.18);
+        }
     </style>
 </head>
 
-<body>
+<body data-theme="dark">
 
     <nav>
         <div class="logo">MA</div>
@@ -1473,6 +1552,9 @@
             <li><a href="#certificates">Achievements</a></li>
             <li><a href="#chat-section">AI Assistant</a></li>
             <li><a href="#contact">Contact</a></li>
+            <li><button class="theme-toggle" id="themeToggle">
+                    <i class="fa-solid fa-moon"></i>
+                </button></li>
         </ul>
     </nav>
     <!-- Hero Section -->
@@ -1598,7 +1680,9 @@
         <div class="skills-section">
             <div class="skill-group">
                 <div class="skill-group-title">Languages & Databases</div>
-                <div class="skill-tags"><span class="skill-tag">Python</span><span class="skill-tag">SQL</span></div>
+                <div class="skill-tags"><span class="skill-tag">Python</span><span class="skill-tag">SQL</span><span
+                        class="skill-tag">MongoDB</span><span class="skill-tag">Html</span><span
+                        class="skill-tag">Css</span><span class="skill-tag">Javascript</span></div>
             </div>
             <div class="skill-group">
                 <div class="skill-group-title">Data Analysis & BI</div>
@@ -1763,14 +1847,17 @@
             </div>
 
             <div class="project-card">
-                <div class="wip-badge">🚧 In Progress</div>
+                <!-- <div class="wip-badge">🚧 In Progress</div> -->
                 <div class="proj-icon">🎓</div>
                 <div class="proj-title">Smart Attendance System</div>
                 <div class="proj-desc">Face recognition-based attendance system that automatically marks attendance
                     using live webcam feed — eliminating manual entry with real-time detection and recognition.</div>
                 <div class="proj-tags"><span class="proj-tag">Python</span><span class="proj-tag">OpenCV</span><span
                         class="proj-tag">Face Recognition</span><span class="proj-tag">Deep Learning</span></div>
-                <span class="proj-link" style="cursor:default;opacity:0.5">GitHub coming soon</span>
+                <!-- <span class="proj-link" style="cursor:default;opacity:0.5">GitHub coming soon</span> -->
+                <a href="https://github.com/9ariz1/Smart_Attendance_System_using_FaceRecognition_PoweredbyAI"
+                    target="_blank" class="proj-link">GitHub
+                    →</a>
             </div>
 
             <div class="project-card">
@@ -1849,9 +1936,10 @@
             readiness for data science roles. Feel free to view or download my resume.
         </p>
         <div class="hero-btns">
-            <a href="https://drive.google.com/file/d/1whFS35D9UKPb10Ni9AdNrKAFoIs-fhKf/view?usp=drive_link" target="_blank" class="btn btn-outline"><i
-                    class="fa-solid fa-eye fa-beat-fade" style="margin-left: -5px;"></i> View Resume</a>
-            <a href="static/Mo_Ariz_updateSDE.pdf" download="Mo_Ariz_updateSDE.pdf" class="btn btn-outline"><i
+            <a href="https://drive.google.com/file/d/1DBvCVUYsFlj8cb-cQqDNtzugn5HR9WCQ/view?usp=drivesdk"
+                target="_blank" class="btn btn-outline"><i class="fa-solid fa-eye fa-beat-fade"
+                    style="margin-left: -5px;"></i> View Resume</a>
+            <a href="static/ArizCV_Ai.pdf" download="ArizCV_Ai.pdf" class="btn btn-outline"><i
                     class="fa-solid fa-download fa-bounce"></i> Download Resume</a>
         </div>
     </section>
@@ -2107,12 +2195,12 @@
         <h2 class="section-title">Let's connect</h2>
         <p class="section-sub">Actively looking for entry-level data science and analyst roles. Let's talk!</p>
         <div class="contact-grid">
-            <a href="mailto:mohammadariz98765@gmail.com">
+            <a href="mailto:arizsheikh818@gmail.com">
                 <div class="contact-card">
                     <div class="cc-icon">📧</div>
                     <div>
                         <div class="cc-label">Email</div>
-                        <div class="cc-val">mohammadariz98765@gmail.com</div>
+                        <div class="cc-val">arizsheikh818@gmail.com</div>
                     </div>
                 </div>
             </a>
@@ -2183,7 +2271,7 @@
         const PERSONA = `You are the AI portfolio assistant for Mo Ariz. Speak in first person as Mo.
 
 Personal details:
-- Based in Lucknow, India | Email: mohammadariz98765@gmail.com | Phone: +91 9305178391
+- Based in Lucknow, India | Email: arizsheikh818@gmail.com | Phone: +91 9305178391
 - LinkedIn: linkedin.com/in/mo-ariz | GitHub: github.com/9ariz1
 
 Career objective:
@@ -2385,6 +2473,51 @@ Never give long paragraphs.`;
             box.appendChild(wrapper);
             box.scrollTop = box.scrollHeight;
         }
+    </script>
+    <script>
+
+        const themeBtn = document.getElementById("themeToggle");
+
+        themeBtn.addEventListener("click", () => {
+
+            const body = document.body;
+
+            const currentTheme = body.getAttribute("data-theme");
+
+            if (currentTheme === "light") {
+
+                body.setAttribute("data-theme", "dark");
+
+                themeBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
+
+                localStorage.setItem("theme", "dark");
+
+            } else {
+
+                body.setAttribute("data-theme", "light");
+
+                themeBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
+
+                localStorage.setItem("theme", "light");
+            }
+        });
+
+        window.addEventListener("DOMContentLoaded", () => {
+
+            const savedTheme = localStorage.getItem("theme") || "dark";
+
+            document.body.setAttribute("data-theme", savedTheme);
+
+            if (savedTheme === "light") {
+
+                themeBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
+
+            } else {
+
+                themeBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
+            }
+        });
+
     </script>
 </body>
 
