@@ -5,6 +5,8 @@ import os
 from dotenv import load_dotenv
 
 
+load_dotenv()
+
 app = Flask(__name__)
 CORS(app)
 
@@ -77,7 +79,7 @@ def chat():
                 "Authorization": f"Bearer {GROQ_API_KEY}"
             },
             json={
-                "model": "llama-3.1-8b-instant",
+                "model": "openai/gpt-oss-20b",
                 "messages": groq_messages,
                 "max_tokens": 300,
                 "temperature": 0.7

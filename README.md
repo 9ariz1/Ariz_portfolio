@@ -2,11 +2,11 @@
 
 ![Python](https://img.shields.io/badge/Python-3.12-blue?style=flat&logo=python)
 ![Flask](https://img.shields.io/badge/Flask-3.0-black?style=flat&logo=flask)
-![Groq AI](https://img.shields.io/badge/Groq-LLaMA%203.1-orange?style=flat)
+![Groq AI](https://img.shields.io/badge/Groq-GPT--OSS-orange?style=flat)
 ![Render](https://img.shields.io/badge/Deployed-Render-purple?style=flat)
 ![License](https://img.shields.io/badge/License-MIT-green?style=flat)
 
-> A modern, AI-powered personal portfolio website built with **Python Flask** as the backend and **pure HTML, CSS, Vanilla JavaScript** as the frontend. Features a live AI chatbot powered by **Groq's LLaMA 3.1** model that answers questions about me in real-time.
+> A modern, AI-powered personal portfolio website built with **Python Flask** as the backend and **pure HTML, CSS, Vanilla JavaScript** as the frontend. Features a live AI chatbot powered by **Groq's GPT-OSS** model that answers questions about me in real-time.
 
 🌐 **Live Demo:** [https://ariz-portfolio.onrender.com](https://ariz-portfolio.onrender.com)
 
@@ -14,7 +14,7 @@
 
 ## ✨ Features
 
-- 🤖 **AI Chat Assistant** — Powered by Groq (LLaMA 3.1 8B Instant), answers questions about me just like I would
+- 🤖 **AI Chat Assistant** — Powered by Groq (GPT-OSS 20B), answers questions about me just like I would
 - 📊 **9 Real Projects** — With GitHub links and tech stack badges
 - 🏆 **10+ Certificates** — Microsoft Azure, Oracle OCI, and more
 - 🎓 **Education & Internships** — Full academic and experience timeline
@@ -53,7 +53,7 @@ portfolio/
 |-------|-----------|---------|
 | Backend | Python 3.12, Flask | Server, routing, API calls |
 | Frontend | HTML5, CSS3, Vanilla JS | UI, animations, chat logic |
-| AI Model | Groq API (LLaMA 3.1 8B) | AI chatbot responses |
+| AI Model | Groq API (GPT-OSS 20B) | AI chatbot responses |
 | Deployment | Render (Free Tier) | Live hosting |
 | Version Control | Git, GitHub | Source code management |
 
@@ -70,7 +70,7 @@ Flask receives request
         ↓
 Flask adds PERSONA (Mo's profile) + conversation history
         ↓
-Groq API call (LLaMA 3.1 model)
+Groq API call (GPT-OSS model)
         ↓
 AI generates reply as Mo Ariz
         ↓
@@ -109,9 +109,9 @@ pip install -r requirements.txt
 - Go to [console.groq.com](https://console.groq.com)
 - Sign up → Create API Key (completely free!)
 
-### 5. Add API key to app.py
+### 5. Add API key to `.env`
 ```python
-GROQ_API_KEY = "gsk_your_api_key_here"
+GROQ_API_KEY=gsk_your_api_key_here
 ```
 
 ### 6. Run the app
@@ -145,7 +145,7 @@ pip install -r requirements.txt
 
 ## 🤖 AI Chat Feature
 
-The **"Ask Me Anything"** section uses **Groq's LLaMA 3.1 8B Instant** model:
+The **"Ask Me Anything"** section uses Groq's **GPT-OSS 20B** model:
 
 - ⚡ Extremely fast responses
 - 🆓 Completely free — no credit card required
