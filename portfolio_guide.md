@@ -44,7 +44,7 @@ Yeh ek **AI-powered personal portfolio website** hai jo Flask (Python) se bana h
 
 ### Step 6 — Testing & Debugging
 - API key ka issue aaya — .env file Windows pe load nahi ho rahi thi
-- Solution: Key directly app.py mein hardcode ki (locally use ke liye)
+- Solution: `load_dotenv()` ko sabse pehle call kiya (before `os.getenv()`) aur .env file ka path/encoding check kiya — key ko kabhi bhi app.py mein hardcode nahi kiya
 - Groq model `llama3-8b-8192` deprecated tha — `llama-3.1-8b-instant` se replace kiya
 
 ---
@@ -160,15 +160,20 @@ Frontend → Flask Backend → Groq API
 Key sirf Flask server pe hoti hai — browser tak kabhi nahi pahunchi.
 
 ### Local Development ke liye:
-```python
-GROQ_API_KEY = "gsk_your_key_here"  # app.py mein directly
 ```
-
-### Production ke liye:
-```
-.env file mein:
+.env file banao (project root mein), Git mein kabhi commit mat karo:
 GROQ_API_KEY=gsk_your_key_here
 ```
+app.py automatically `load_dotenv()` se ye value uthata hai via `os.getenv("GROQ_API_KEY")`.
+Key ko kabhi bhi app.py ya kisi bhi Git-tracked file mein directly hardcode mat karo.
+
+### Production (Render) ke liye:
+```
+Render Dashboard → Environment → Environment Variable add karo:
+Key: GROQ_API_KEY
+Value: <your real key>
+```
+Yahaan bhi key sirf environment variable ke through milti hai — code mein kahin nahi likhi jaati.
 
 ---
 
@@ -203,8 +208,8 @@ venv\Scripts\activate
 # 3. Packages install karo
 pip install flask flask-cors requests python-dotenv
 
-# 4. app.py mein API key daalo
-GROQ_API_KEY = "gsk_your_key_here"
+# 4. Project root mein .env file banao aur ye line daalo (Git mein commit mat karna)
+GROQ_API_KEY=gsk_your_key_here
 
 # 5. index.html ko templates/ mein daalo
 # profile.png ko static/ mein daalo
@@ -261,7 +266,7 @@ http://127.0.0.1:5000
 
 - `.env` file kabhi GitHub pe push mat karo
 - API key kisi ke saath share mat karo
-- Locally hardcoded key ko production mein mat use karo
+- Key ko kabhi bhi app.py ya kisi Git-tracked file mein hardcode mat karo — sirf `.env` (local) ya Render Environment Variables (production) use karo
 - Groq free tier: 30 requests/minute, 14,400 requests/day
 
 ---

@@ -3,8 +3,39 @@
 
 <head>
     <meta charset="UTF-8">
+    <script>document.documentElement.classList.add('js');</script>
+    <script>
+        (function () {
+            try {
+                var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                var seen = sessionStorage.getItem('moArizIntroSeen');
+                if (!reduced && !seen) {
+                    document.documentElement.classList.add('show-intro');
+                    sessionStorage.setItem('moArizIntroSeen', '1');
+                }
+            } catch (e) {
+                /* sessionStorage unavailable (privacy mode etc.) - just skip the intro safely */
+            }
+        })();
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mo Ariz — Portfolio</title>
+    <title>Mo Ariz | Builder — Data, AI & Software</title>
+    <meta name="description"
+        content="Mo Ariz is an entry-level builder across data, AI, and software — Python, SQL, Power BI, machine learning, computer vision, and Flask/Django. Explore projects and get in touch.">
+    <meta property="og:title" content="Mo Ariz | Builder — Data, AI & Software">
+    <meta property="og:description"
+        content="I build practical solutions across data, artificial intelligence, and software — from analysis and machine learning to intelligent applications and deployment.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ariz-portfolio.onrender.com/">
+    <meta property="og:site_name" content="Mo Ariz Portfolio">
+    <meta property="og:image" content="https://ariz-portfolio.onrender.com/static/profile.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Mo Ariz | Builder — Data, AI & Software">
+    <meta name="twitter:description"
+        content="I build practical solutions across data, artificial intelligence, and software — from analysis and machine learning to intelligent applications and deployment.">
+    <meta name="twitter:image" content="https://ariz-portfolio.onrender.com/static/profile.png">
+    <link rel="canonical" href="https://ariz-portfolio.onrender.com/">
+    <meta name="robots" content="index, follow">
     <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='favicon.svg') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
         integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
@@ -16,7 +47,18 @@
   "@context": "https://schema.org",
   "@type": "Person",
   "name": "Mo Ariz",
-  "url": "https://ariz-portfolio.onrender.com",
+  "url": "https://ariz-portfolio.onrender.com/",
+  "image": "https://ariz-portfolio.onrender.com/static/profile.png",
+  "jobTitle": "Data Science Trainee",
+  "description": "Entry-level builder across data, AI, and software — Python, SQL, Power BI, machine learning, computer vision, and Flask/Django.",
+  "alumniOf": {
+    "@type": "CollegeOrUniversity",
+    "name": "Integral University"
+  },
+  "knowsAbout": [
+    "Python", "SQL", "Power BI", "Machine Learning", "Data Analysis",
+    "Computer Vision", "Flask", "Django"
+  ],
   "sameAs": [
     "https://www.linkedin.com/in/mo-ariz/",
     "https://github.com/9ariz1",
@@ -26,18 +68,37 @@
   ]
 }
 </script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Mo Ariz | Builder — Data, AI & Software",
+  "url": "https://ariz-portfolio.onrender.com/"
+}
+</script>
 
     <style>
         html {
             scroll-behavior: smooth;
         }
 
-        body {
-            transition: background 0.4s ease, color 0.4s ease;
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.001ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.001ms !important;
+                scroll-behavior: auto !important;
+            }
         }
 
-        * {
-            transition: all 0.2s ease-in-out;
+        body {
+            transition: background 0.4s ease, color 0.4s ease;
         }
 
         * {
@@ -47,37 +108,37 @@
         }
 
         :root {
-            --bg: #0a0f0a;
-            --bg2: #0f150f;
-            --bg3: #172017;
-            --accent: #22c55e;
-            --accent2: #4ade80;
-            --accent3: #86efac;
-            --text: #e8f0e8;
-            --muted: #7a9a7a;
-            --border: #1e2e1e;
-            --card: #111811;
-            --glass: rgba(34, 197, 94, 0.08)
+            --bg: #090c14;
+            --bg2: #0d1220;
+            --bg3: #131a2e;
+            --accent: #22d3ee;
+            --accent2: #6366f1;
+            --accent3: #818cf8;
+            --text: #e9edf7;
+            --muted: #8891ab;
+            --border: #1c2338;
+            --card: #10141f;
+            --glass: rgba(99, 102, 241, 0.08)
         }
 
         /* LIGHT MODE */
         [data-theme="light"] {
-            --bg: #d2d8c8;
-            --bg2: #faf6f6;
-            --bg3: #e4ebf1;
+            --bg: #eef1f8;
+            --bg2: #faf9fb;
+            --bg3: #e7ecf7;
 
-            --text: #030406;
-            --muted: #475569;
+            --text: #0b0e1a;
+            --muted: #4b5568;
 
-            --card: rgba(255, 255, 255, 0.75);
+            --card: rgba(255, 255, 255, 0.8);
 
             --border: rgba(15, 23, 42, 0.08);
 
-            --accent: #2563eb;
-            --accent2: #3b82f6;
-            --accent3: #60a5fa;
+            --accent: #0e7490;
+            --accent2: #4f46e5;
+            --accent3: #6366f1;
 
-            --glass: rgba(37, 99, 235, 0.08);
+            --glass: rgba(79, 70, 229, 0.08);
         }
 
         body {
@@ -104,17 +165,19 @@
             align-items: center;
             padding: 1rem 2rem;
 
-            background: rgba(10, 15, 10, 0.88);
+            background: transparent;
+            border-bottom: 1px solid transparent;
+        }
 
-            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
-
+        nav.nav-scrolled {
+            background: var(--bg2);
             backdrop-filter: blur(12px);
-
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.14);
             border-bottom: 1px solid var(--border);
         }
 
-        [data-theme="light"] nav {
-            background: rgba(255, 255, 255, 0.75);
+        [data-theme="light"] nav.nav-scrolled {
+            background: var(--bg2);
         }
 
         .logo {
@@ -161,7 +224,7 @@
             transform: translate(-50%, -50%);
             width: 600px;
             height: 600px;
-            background: radial-gradient(circle, rgba(34, 197, 94, 0.12) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.12) 0%, transparent 70%);
             pointer-events: none
         }
 
@@ -203,9 +266,18 @@
             font-size: 0.8rem;
             padding: 0.3rem 0.9rem;
             border-radius: 2rem;
-            border: 1px solid rgba(34, 197, 94, 0.25);
+            border: 1px solid rgba(99, 102, 241, 0.25);
             color: var(--accent3);
             background: var(--glass)
+        }
+
+        .hero-position {
+            font-size: clamp(1rem, 2.4vw, 1.25rem);
+            font-weight: 600;
+            color: var(--accent2);
+            max-width: 640px;
+            margin: 0 auto 1rem;
+            line-height: 1.5
         }
 
         .hero-sub {
@@ -214,6 +286,482 @@
             max-width: 580px;
             margin: 0 auto 2.5rem;
             line-height: 1.8
+        }
+
+        .hero-links {
+            display: flex;
+            gap: 1.25rem;
+            justify-content: center;
+            margin-top: 1.25rem
+        }
+
+        .hero-links a {
+            color: var(--muted);
+            font-size: 1.2rem;
+            transition: color 0.2s
+        }
+
+        .hero-links a:hover {
+            color: var(--accent)
+        }
+
+        #heroCanvas {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.55;
+            pointer-events: none
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1
+        }
+
+        .hero-reveal {
+            opacity: 0;
+            transform: translateY(16px);
+            animation: heroReveal 0.7s cubic-bezier(.16, 1, .3, 1) forwards;
+            animation-delay: var(--d, 0s)
+        }
+
+        @keyframes heroReveal {
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .hero-reveal {
+                animation: none;
+                opacity: 1;
+                transform: none
+            }
+        }
+
+        [data-magnetic] {
+            will-change: transform
+        }
+
+        /* Scroll reveal (progressive enhancement: only active once .js is present) */
+        .js .reveal {
+            opacity: 0;
+            transform: translateY(22px) scale(0.98);
+            transition: opacity 0.6s cubic-bezier(.16, 1, .3, 1), transform 0.6s cubic-bezier(.16, 1, .3, 1)
+        }
+
+        .js .reveal.reveal-in {
+            opacity: 1;
+            transform: none
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .js .reveal {
+                opacity: 1;
+                transform: none;
+                transition: none
+            }
+        }
+
+        /* Navbar states */
+        nav {
+            transition: background 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease
+        }
+
+        nav ul a {
+            position: relative
+        }
+
+        nav ul a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -4px;
+            width: 0;
+            height: 1.5px;
+            background: linear-gradient(90deg, var(--accent), var(--accent2));
+            transition: width 0.25s ease
+        }
+
+        nav ul a:hover::after,
+        nav ul a.active-link::after {
+            width: 100%
+        }
+
+        nav ul a.active-link {
+            color: var(--text)
+        }
+
+        /* Scroll progress bar */
+        #scrollProgress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 2px;
+            width: 0%;
+            background: linear-gradient(90deg, var(--accent), var(--accent2));
+            z-index: 300;
+            pointer-events: none
+        }
+
+        /* Custom cursor */
+        #cursorDot {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 10px;
+            height: 10px;
+            margin: -5px;
+            border-radius: 50%;
+            background: var(--accent);
+            z-index: 400;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s, width 0.2s, height 0.2s, margin 0.2s, background 0.2s
+        }
+
+        #cursorDot.cursor-grow {
+            width: 34px;
+            height: 34px;
+            margin: -17px;
+            background: var(--glass);
+            border: 1.5px solid var(--accent)
+        }
+
+        /* AI assistant activation pulse */
+        .chat-avatar {
+            transition: box-shadow 0.4s ease
+        }
+
+        #chat-section.ai-activated .chat-avatar {
+            animation: aiPulse 2.4s ease-in-out infinite
+        }
+
+        @keyframes aiPulse {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.35)
+            }
+
+            50% {
+                box-shadow: 0 0 0 10px rgba(34, 211, 238, 0)
+            }
+        }
+
+        /* Project card tilt performance hint */
+        .project-card {
+            will-change: transform;
+            transform-style: preserve-3d
+        }
+
+        /* Focus visibility for accessibility */
+        a:focus-visible,
+        button:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 3px;
+            border-radius: 4px
+        }
+
+        /* Hello Intro overlay: hidden by default (safe if JS is disabled or fails) */
+        #helloIntro {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 900;
+            background: #05070c;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        html.show-intro #helloIntro {
+            display: flex;
+        }
+
+        #helloIntro.intro-hidden {
+            display: none !important;
+        }
+
+        #helloIntro .intro-line {
+            position: absolute;
+            font-weight: 700;
+            font-size: clamp(1.6rem, 5vw, 3rem);
+            color: var(--text, #eef1f8);
+            opacity: 0;
+            transform: translateY(10px) scale(0.98);
+            filter: blur(4px);
+            transition: opacity 0.5s ease, transform 0.6s ease, filter 0.6s ease;
+            max-width: 90vw;
+        }
+
+        #helloIntro .intro-line.show {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            filter: blur(0);
+        }
+
+        /* Hello: SVG stroke-draw reveal (not a fade-in) */
+        #helloIntro .intro-hello {
+            opacity: 1;
+            transform: none;
+            filter: none;
+        }
+
+        #helloIntro .intro-hello.hello-exit {
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .hello-svg {
+            width: min(360px, 80vw);
+            height: auto;
+            overflow: visible;
+        }
+
+        .hello-path {
+            fill: var(--accent, #22d3ee);
+            fill-opacity: 0;
+            fill-rule: evenodd;
+            stroke: var(--accent, #22d3ee);
+            stroke-width: 1.2;
+            stroke-linejoin: round;
+            stroke-linecap: round;
+        }
+
+        #helloIntro .intro-hello.show .hello-path {
+            animation:
+                helloDraw 0.9s cubic-bezier(.65, 0, .35, 1) forwards,
+                helloFill 0.22s ease 0.76s forwards,
+                helloColorEvolve 0.9s ease 0.95s forwards;
+        }
+
+        @keyframes helloDraw {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        .hello-hole { fill: none !important; }
+
+        @keyframes helloFill {
+            to {
+                fill-opacity: 1;
+            }
+        }
+
+        @keyframes helloColorEvolve {
+            0% {
+                fill: var(--accent, #22d3ee);
+                stroke: var(--accent, #22d3ee);
+            }
+
+            50% {
+                fill: #38bdf8;
+                stroke: #38bdf8;
+            }
+
+            100% {
+                fill: var(--accent2, #6366f1);
+                stroke: var(--accent2, #6366f1);
+            }
+        }
+
+        #helloIntro.intro-leaving {
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            pointer-events: none;
+        }
+
+        .intro-progress-track {
+            position: absolute;
+            bottom: 3.25rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: min(180px, 40vw);
+            height: 2px;
+            background: rgba(255, 255, 255, 0.12);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .intro-progress-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--accent, #22d3ee), var(--accent2, #6366f1));
+            transition: width 2.3s linear;
+        }
+
+        #skipIntro {
+            position: absolute;
+            bottom: 2rem;
+            right: 2rem;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.75rem;
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            cursor: pointer;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        #skipIntro:hover {
+            color: #fff;
+            border-color: rgba(255, 255, 255, 0.6);
+        }
+
+        body.intro-lock {
+            overflow: hidden;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            #helloIntro .intro-line {
+                transition: opacity 0.15s linear;
+                filter: none;
+                transform: none;
+            }
+
+            #helloIntro .intro-hello.show .hello-path {
+                animation: none;
+                stroke-dashoffset: 0;
+                fill-opacity: 1;
+                fill: var(--accent2, #6366f1);
+                stroke: var(--accent2, #6366f1);
+            }
+
+            .intro-progress-fill {
+                transition: none;
+            }
+
+            #helloIntro.intro-leaving {
+                transition: opacity 0.15s linear;
+            }
+        }
+
+        .proj-subhead {
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin: 2.5rem 0 1.25rem
+        }
+
+        .proj-subhead:first-of-type {
+            margin-top: 0
+        }
+
+        .cert-toggle-wrap {
+            text-align: center;
+            margin-top: 1.5rem
+        }
+
+        .process-strip {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.25rem;
+            margin-top: 3.5rem;
+            padding-top: 3rem;
+            border-top: 1px solid var(--border)
+        }
+
+        .process-step {
+            position: relative;
+            padding-left: 1.25rem;
+            border-left: 2px solid var(--border)
+        }
+
+        .process-num {
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 0.4rem;
+            letter-spacing: 0.05em
+        }
+
+        .process-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 0.35rem
+        }
+
+        .process-desc {
+            font-size: 0.85rem;
+            color: var(--muted);
+            line-height: 1.6
+        }
+
+        @media (max-width: 760px) {
+            .process-strip {
+                grid-template-columns: 1fr 1fr;
+                row-gap: 1.75rem
+            }
+        }
+
+        .skill-nodes {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            justify-content: center;
+            margin: 1.75rem 0 2.5rem;
+            position: relative
+        }
+
+        .skill-nodes::before {
+            content: '';
+            position: absolute;
+            left: 8%;
+            right: 8%;
+            top: 50%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border), transparent);
+            z-index: -1
+        }
+
+        .skill-node {
+            padding: 0.55rem 1.1rem;
+            border-radius: 2rem;
+            border: 1px solid var(--border);
+            background: var(--card);
+            color: var(--muted);
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: color 0.2s, border-color 0.2s, background 0.2s, transform 0.2s
+        }
+
+        .skill-node:hover {
+            color: var(--text);
+            border-color: var(--accent)
+        }
+
+        .skill-node.active {
+            color: #05161c;
+            background: linear-gradient(90deg, var(--accent), var(--accent2));
+            border-color: transparent;
+            transform: translateY(-1px)
+        }
+
+        [data-theme="light"] .skill-node.active {
+            color: #fff
+        }
+
+        [data-theme="light"] .msg.user,
+        [data-theme="light"] .send-btn {
+            color: #fff
+        }
+
+        .skill-group {
+            transition: opacity 0.3s ease, transform 0.3s ease, filter 0.3s ease
+        }
+
+        .skill-group.dimmed {
+            opacity: 0.32;
+            filter: saturate(0.4)
         }
 
         .hero-btns {
@@ -238,9 +786,13 @@
             color: #000
         }
 
+        [data-theme="light"] .btn-primary {
+            color: #fff
+        }
+
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(34, 197, 94, 0.3)
+            box-shadow: 0 8px 24px rgba(99, 102, 241, 0.3)
         }
 
         .btn-outline {
@@ -257,7 +809,17 @@
         section {
             padding: 5rem 2rem;
             max-width: 1100px;
-            margin: 0 auto
+            margin: 0 auto;
+            position: relative;
+        }
+
+        #about,
+        #skills,
+        #projects,
+        #certificates {
+            background: var(--bg2);
+            box-shadow: 0 0 0 100vmax var(--bg2);
+            clip-path: inset(0 -100vmax);
         }
 
         .section-label {
@@ -364,7 +926,13 @@
             border-radius: 16px;
             padding: 1.4rem;
             position: relative;
-            overflow: hidden
+            overflow: hidden;
+            transition: transform 0.25s ease, border-color 0.25s ease
+        }
+
+        .edu-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(99, 102, 241, 0.35)
         }
 
         .edu-card::before {
@@ -468,7 +1036,7 @@
         }
 
         .intern-card:hover {
-            border-color: rgba(34, 197, 94, 0.35);
+            border-color: rgba(99, 102, 241, 0.35);
             transform: translateY(-4px)
         }
 
@@ -487,10 +1055,68 @@
         .intern-period {
             font-size: 0.78rem;
             color: var(--accent2);
-            border: 1px solid rgba(34, 197, 94, 0.25);
+            border: 1px solid rgba(99, 102, 241, 0.25);
             padding: 0.25rem 0.75rem;
             border-radius: 2rem;
             white-space: nowrap
+        }
+
+        .intern-desc {
+            font-size: 0.82rem;
+            color: var(--muted);
+            margin-top: 0.5rem;
+            line-height: 1.6;
+            max-width: 46ch
+        }
+
+        .timeline {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+            padding-left: 2.25rem
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 6px;
+            top: 6px;
+            bottom: 6px;
+            width: 2px;
+            background: linear-gradient(180deg, var(--accent), var(--accent2), transparent);
+            transform: scaleY(0);
+            transform-origin: top;
+            transition: transform 1s cubic-bezier(.16, 1, .3, 1)
+        }
+
+        .timeline.line-in .timeline-line {
+            transform: scaleY(1)
+        }
+
+        .timeline-item {
+            position: relative
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -2.25rem;
+            top: 1.4rem;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--bg);
+            border: 2px solid var(--accent);
+            box-shadow: 0 0 0 4px var(--glass)
+        }
+
+        @media (max-width: 600px) {
+            .timeline {
+                padding-left: 1.6rem
+            }
+
+            .timeline-dot {
+                left: -1.6rem
+            }
         }
 
         .projects-grid {
@@ -522,12 +1148,30 @@
         }
 
         .project-card:hover {
-            border-color: rgba(34, 197, 94, 0.4);
+            border-color: rgba(99, 102, 241, 0.4);
             transform: translateY(-4px)
         }
 
         .project-card:hover::before {
             opacity: 1
+        }
+
+        .project-card.featured {
+            padding: 1.85rem;
+            border-color: rgba(99, 102, 241, 0.28);
+            background: linear-gradient(180deg, rgba(99, 102, 241, 0.05), var(--card) 40%)
+        }
+
+        .project-card.featured::before {
+            opacity: 0.65
+        }
+
+        .project-card.featured:hover {
+            box-shadow: 0 16px 40px -12px rgba(34, 211, 238, 0.25)
+        }
+
+        .project-card.featured .proj-title {
+            font-size: 1.12rem
         }
 
         .wip-badge {
@@ -539,6 +1183,10 @@
             color: #fbbf24;
             border: 1px solid rgba(251, 191, 36, 0.3);
             margin-bottom: 0.75rem
+        }
+
+        [data-theme="light"] .wip-badge {
+            color: #7a5108
         }
 
         .proj-icon {
@@ -569,7 +1217,7 @@
             font-size: 0.7rem;
             padding: 0.2rem 0.6rem;
             border-radius: 0.5rem;
-            background: rgba(34, 197, 94, 0.12);
+            background: rgba(99, 102, 241, 0.12);
             color: var(--accent2)
         }
 
@@ -578,7 +1226,7 @@
             display: inline-block;
             font-size: 0.78rem;
             color: var(--accent);
-            border: 1px solid rgba(34, 197, 94, 0.25);
+            border: 1px solid rgba(99, 102, 241, 0.25);
             padding: 0.25rem 0.75rem;
             border-radius: 2rem;
             transition: all 0.2s
@@ -604,7 +1252,7 @@
         }
 
         .blog-card:hover {
-            border-color: rgba(34, 197, 94, 0.4);
+            border-color: rgba(99, 102, 241, 0.4);
             transform: translateY(-4px)
         }
 
@@ -647,9 +1295,9 @@
             font-size: 0.7rem;
             padding: 0.2rem 0.7rem;
             border-radius: 2rem;
-            background: rgba(34, 197, 94, 0.12);
+            background: rgba(99, 102, 241, 0.12);
             color: var(--accent2);
-            border: 1px solid rgba(34, 197, 94, 0.25)
+            border: 1px solid rgba(99, 102, 241, 0.25)
         }
 
         .blog-date {
@@ -676,7 +1324,7 @@
         .blog-read {
             font-size: 0.78rem;
             color: var(--accent);
-            border: 1px solid rgba(34, 197, 94, 0.25);
+            border: 1px solid rgba(99, 102, 241, 0.25);
             padding: 0.25rem 0.75rem;
             border-radius: 2rem;
             display: inline-block;
@@ -984,7 +1632,7 @@
             width: 200px;
             height: 200px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #22c55e, #38bdf8);
+            background: linear-gradient(135deg, #22d3ee, #38bdf8);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -993,8 +1641,8 @@
             position: relative;
             padding: 0;
             overflow: hidden;
-            border: 3px solid #22c55e;
-            box-shadow: 0 0 0 6px rgba(34, 197, 94, 0.15), 0 0 30px rgba(34, 197, 94, 0.2)
+            border: 3px solid #22d3ee;
+            box-shadow: 0 0 0 6px rgba(99, 102, 241, 0.15), 0 0 30px rgba(99, 102, 241, 0.2)
         }
 
         .avatar::after {
@@ -1002,7 +1650,7 @@
             position: absolute;
             inset: -4px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #22c55e, #38bdf8);
+            background: linear-gradient(135deg, #22d3ee, #38bdf8);
             z-index: -1;
             filter: blur(16px);
             opacity: 0.4
@@ -1013,7 +1661,7 @@
             position: absolute;
             inset: 0;
             border-radius: 50%;
-            background: linear-gradient(135deg, rgba(34, 197, 94, 0.15), transparent);
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), transparent);
             z-index: 1;
             pointer-events: none
         }
@@ -1031,7 +1679,7 @@
         }
 
         .avatar:hover {
-            box-shadow: 0 0 0 6px rgba(34, 197, 94, 0.25), 0 0 40px rgba(34, 197, 94, 0.35)
+            box-shadow: 0 0 0 6px rgba(99, 102, 241, 0.25), 0 0 40px rgba(99, 102, 241, 0.35)
         }
 
         .cert-grid {
@@ -1086,6 +1734,25 @@
             width: fit-content;
         }
 
+        [data-theme="light"] .cert-badge {
+            color: #00688f
+        }
+
+        [data-theme="light"] [style*="color:#f08060"],
+        [data-theme="light"] [style*="color: #f08060"] {
+            color: #a13a22 !important
+        }
+
+        [data-theme="light"] [style*="color:#6366f1"],
+        [data-theme="light"] [style*="color: #6366f1"] {
+            color: #4338ca !important
+        }
+
+        [data-theme="light"] [style*="color:#a5de4a"],
+        [data-theme="light"] [style*="color:#b9de4a"] {
+            color: #4d6b16 !important
+        }
+
         .cert-name {
             font-size: 1rem;
             font-weight: 700;
@@ -1120,6 +1787,10 @@
             border-radius: 2rem;
             display: inline-block;
             transition: all 0.2s
+        }
+
+        [data-theme="light"] .cert-view {
+            color: #00688f
         }
 
         .cert-card:hover .cert-view {
@@ -1221,7 +1892,7 @@
             justify-content: center;
             font-size: 1.1rem;
             flex-shrink: 0;
-            box-shadow: 0 0 12px rgba(34, 197, 94, 0.3);
+            box-shadow: 0 0 12px rgba(99, 102, 241, 0.3);
         }
 
         .chat-name {
@@ -1263,9 +1934,9 @@
             font-size: 0.68rem;
             padding: 0.2rem 0.7rem;
             border-radius: 2rem;
-            background: rgba(34, 197, 94, 0.1);
+            background: rgba(99, 102, 241, 0.1);
             color: var(--accent2);
-            border: 1px solid rgba(34, 197, 94, 0.2);
+            border: 1px solid rgba(99, 102, 241, 0.2);
         }
 
         /* Messages */
@@ -1398,7 +2069,7 @@
         .qp:hover {
             border-color: var(--accent);
             color: var(--accent);
-            background: rgba(34, 197, 94, 0.06);
+            background: rgba(99, 102, 241, 0.06);
         }
 
         /* Input Row */
@@ -1447,7 +2118,7 @@
             justify-content: center;
             flex-shrink: 0;
             transition: transform 0.2s;
-            box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
         }
 
         .send-btn:hover {
@@ -1473,6 +2144,9 @@
 
             nav ul a {
                 font-size: 0.75rem;
+                display: inline-block;
+                padding: 0.55rem 0.4rem;
+                line-height: 1;
             }
 
             /* Overflow fix */
@@ -1531,12 +2205,32 @@
 
             color: var(--accent);
 
-            box-shadow: 0 8px 24px rgba(34, 197, 94, 0.18);
+            box-shadow: 0 8px 24px rgba(99, 102, 241, 0.18);
         }
     </style>
 </head>
 
 <body data-theme="dark">
+
+    <div id="helloIntro" role="presentation">
+        <button id="skipIntro" aria-label="Skip intro">Skip</button>
+        <div class="intro-line intro-hello" data-line="1" aria-hidden="true">
+            <svg class="hello-svg" viewBox="0 0 460 210" xmlns="http://www.w3.org/2000/svg">
+                <g transform="matrix(1.0952,0,0,1.0952,-38.69,-31.26)">
+                    <path class="hello-path" style="stroke-dasharray:1751.0;stroke-dashoffset:1751.0;animation-delay:0ms,760ms,950ms;animation-duration:750ms,220ms,900ms" d="M 58.00,164.00 C 58.67,165.33 60.83,168.50 65.00,167.00 C 69.17,165.50 79.67,156.67 83.00,155.00 C 86.33,153.33 85.00,152.83 85.00,157.00 C 85.00,161.17 82.33,175.67 83.00,180.00 C 83.67,184.33 87.50,183.00 89.00,183.00 C 90.50,183.00 91.00,185.00 92.00,180.00 C 93.00,175.00 93.33,160.00 95.00,153.00 C 96.67,146.00 99.50,141.83 102.00,138.00 C 104.50,134.17 106.67,131.67 110.00,130.00 C 113.33,128.33 118.83,127.00 122.00,128.00 C 125.17,129.00 128.33,129.00 129.00,136.00 C 129.67,143.00 126.00,163.33 126.00,170.00 C 126.00,176.67 127.17,174.17 129.00,176.00 C 130.83,177.83 132.83,180.17 137.00,181.00 C 141.17,181.83 147.83,181.83 154.00,181.00 C 160.17,180.17 168.67,175.83 174.00,176.00 C 179.33,176.17 181.67,180.83 186.00,182.00 C 190.33,183.17 195.17,183.50 200.00,183.00 C 204.83,182.50 208.83,181.83 215.00,179.00 C 221.17,176.17 232.17,166.33 237.00,166.00 C 241.83,165.67 241.17,174.33 244.00,177.00 C 246.83,179.67 248.83,181.50 254.00,182.00 C 259.17,182.50 268.33,182.50 275.00,180.00 C 281.67,177.50 288.67,166.83 294.00,167.00 C 299.33,167.17 301.83,178.50 307.00,181.00 C 312.17,183.50 319.67,183.00 325.00,182.00 C 330.33,181.00 335.00,177.83 339.00,175.00 C 343.00,172.17 346.83,165.33 349.00,165.00 C 351.17,164.67 350.33,170.50 352.00,173.00 C 353.67,175.50 355.00,178.50 359.00,180.00 C 363.00,181.50 371.17,182.67 376.00,182.00 C 380.83,181.33 384.67,178.50 388.00,176.00 C 391.33,173.50 393.83,170.50 396.00,167.00 C 398.17,163.50 400.00,159.83 401.00,155.00 C 402.00,150.17 400.00,140.67 402.00,138.00 C 404.00,135.33 409.17,139.50 413.00,139.00 C 416.83,138.50 421.67,137.33 425.00,135.00 C 428.33,132.67 431.67,127.50 433.00,125.00 C 434.33,122.50 434.17,121.00 433.00,120.00 C 431.83,119.00 428.33,117.50 426.00,119.00 C 423.67,120.50 421.33,127.00 419.00,129.00 C 416.67,131.00 417.83,133.00 412.00,131.00 C 406.17,129.00 391.50,119.00 384.00,117.00 C 376.50,115.00 372.17,116.33 367.00,119.00 C 361.83,121.67 358.17,125.17 353.00,133.00 C 347.83,140.83 340.50,159.33 336.00,166.00 C 331.50,172.67 330.00,171.67 326.00,173.00 C 322.00,174.33 315.50,174.83 312.00,174.00 C 308.50,173.17 306.67,170.50 305.00,168.00 C 303.33,165.50 298.67,166.17 302.00,159.00 C 305.33,151.83 319.83,133.67 325.00,125.00 C 330.17,116.33 330.83,113.83 333.00,107.00 C 335.17,100.17 337.33,89.50 338.00,84.00 C 338.67,78.50 338.00,76.83 337.00,74.00 C 336.00,71.17 335.00,68.33 332.00,67.00 C 329.00,65.67 323.33,64.00 319.00,66.00 C 314.67,68.00 309.50,73.33 306.00,79.00 C 302.50,84.67 300.17,91.33 298.00,100.00 C 295.83,108.67 293.83,121.67 293.00,131.00 C 292.17,140.33 294.50,150.33 293.00,156.00 C 291.50,161.67 287.83,162.17 284.00,165.00 C 280.17,167.83 274.67,171.50 270.00,173.00 C 265.33,174.50 260.00,175.17 256.00,174.00 C 252.00,172.83 248.00,168.83 246.00,166.00 C 244.00,163.17 242.83,160.17 244.00,157.00 C 245.17,153.83 248.67,153.50 253.00,147.00 C 257.33,140.50 265.67,128.33 270.00,118.00 C 274.33,107.67 278.17,93.17 279.00,85.00 C 279.83,76.83 276.67,72.33 275.00,69.00 C 273.33,65.67 271.17,65.67 269.00,65.00 C 266.83,64.33 265.00,63.83 262.00,65.00 C 259.00,66.17 254.50,67.67 251.00,72.00 C 247.50,76.33 243.67,83.33 241.00,91.00 C 238.33,98.67 236.17,107.33 235.00,118.00 C 233.83,128.67 235.50,147.50 234.00,155.00 C 232.50,162.50 230.83,159.83 226.00,163.00 C 221.17,166.17 210.50,172.00 205.00,174.00 C 199.50,176.00 196.67,175.50 193.00,175.00 C 189.33,174.50 182.00,174.33 183.00,171.00 C 184.00,167.67 195.17,160.33 199.00,155.00 C 202.83,149.67 205.00,143.50 206.00,139.00 C 207.00,134.50 206.33,131.33 205.00,128.00 C 203.67,124.67 201.67,120.83 198.00,119.00 C 194.33,117.17 187.50,116.00 183.00,117.00 C 178.50,118.00 174.17,121.33 171.00,125.00 C 167.83,128.67 165.33,134.17 164.00,139.00 C 162.67,143.83 162.50,149.17 163.00,154.00 C 163.50,158.83 167.67,165.00 167.00,168.00 C 166.33,171.00 163.00,171.00 159.00,172.00 C 155.00,173.00 146.67,174.00 143.00,174.00 C 139.33,174.00 138.50,173.17 137.00,172.00 C 135.50,170.83 134.00,173.50 134.00,167.00 C 134.00,160.50 137.67,140.33 137.00,133.00 C 136.33,125.67 133.17,125.33 130.00,123.00 C 126.83,120.67 118.33,123.17 118.00,119.00 C 117.67,114.83 126.17,105.00 128.00,98.00 C 129.83,91.00 130.17,82.17 129.00,77.00 C 127.83,71.83 124.17,69.00 121.00,67.00 C 117.83,65.00 113.83,64.17 110.00,65.00 C 106.17,65.83 101.00,68.67 98.00,72.00 C 95.00,75.33 94.00,73.50 92.00,85.00 C 90.00,96.50 91.17,128.67 86.00,141.00 C 80.83,153.33 65.67,155.17 61.00,159.00 C 56.33,162.83 57.33,162.67 58.00,164.00 Z M 115.00,73.00 C 117.33,73.67 120.33,74.67 121.00,79.00 C 121.67,83.33 121.00,92.67 119.00,99.00 C 117.00,105.33 112.67,112.00 109.00,117.00 C 105.33,122.00 99.17,128.83 97.00,129.00 C 94.83,129.17 95.17,125.83 96.00,118.00 C 96.83,110.17 100.17,89.17 102.00,82.00 C 103.83,74.83 104.83,76.50 107.00,75.00 C 109.17,73.50 112.67,72.33 115.00,73.00 Z M 194.00,126.00 C 196.50,127.00 197.50,129.33 198.00,132.00 C 198.50,134.67 198.33,138.50 197.00,142.00 C 195.67,145.50 193.67,149.33 190.00,153.00 C 186.33,156.67 178.17,164.17 175.00,164.00 C 171.83,163.83 171.33,156.33 171.00,152.00 C 170.67,147.67 171.00,142.33 173.00,138.00 C 175.00,133.67 179.50,128.00 183.00,126.00 C 186.50,124.00 191.50,125.00 194.00,126.00 Z M 266.00,73.00 C 268.33,72.67 269.67,72.50 270.00,77.00 C 270.33,81.50 270.00,92.17 268.00,100.00 C 266.00,107.83 262.17,116.67 258.00,124.00 C 253.83,131.33 245.67,142.83 243.00,144.00 C 240.33,145.17 241.17,139.00 242.00,131.00 C 242.83,123.00 245.67,104.67 248.00,96.00 C 250.33,87.33 253.00,82.83 256.00,79.00 C 259.00,75.17 263.67,73.33 266.00,73.00 Z M 325.00,73.00 C 327.33,72.17 328.50,72.33 329.00,76.00 C 329.50,79.67 330.33,86.67 328.00,95.00 C 325.67,103.33 319.33,117.83 315.00,126.00 C 310.67,134.17 304.17,144.33 302.00,144.00 C 299.83,143.67 301.00,132.00 302.00,124.00 C 303.00,116.00 305.83,103.17 308.00,96.00 C 310.17,88.83 312.17,84.83 315.00,81.00 C 317.83,77.17 322.67,73.83 325.00,73.00 Z M 387.00,127.00 C 390.50,128.17 392.17,131.17 393.00,136.00 C 393.83,140.83 393.83,150.33 392.00,156.00 C 390.17,161.67 385.00,167.00 382.00,170.00 C 379.00,173.00 376.67,173.33 374.00,174.00 C 371.33,174.67 368.33,174.83 366.00,174.00 C 363.67,173.17 361.50,171.17 360.00,169.00 C 358.50,166.83 356.83,165.67 357.00,161.00 C 357.17,156.33 358.50,146.33 361.00,141.00 C 363.50,135.67 367.67,131.33 372.00,129.00 C 376.33,126.67 383.50,125.83 387.00,127.00 Z" />
+                    <path class="hello-path hello-hole" style="stroke-dasharray:135.2;stroke-dashoffset:135.2;animation-delay:100ms,760ms,950ms;animation-duration:110ms,220ms,900ms" d="M 115.00,73.00 C 117.33,73.67 120.33,74.67 121.00,79.00 C 121.67,83.33 121.00,92.67 119.00,99.00 C 117.00,105.33 112.67,112.00 109.00,117.00 C 105.33,122.00 99.17,128.83 97.00,129.00 C 94.83,129.17 95.17,125.83 96.00,118.00 C 96.83,110.17 100.17,89.17 102.00,82.00 C 103.83,74.83 104.83,76.50 107.00,75.00 C 109.17,73.50 112.67,72.33 115.00,73.00 Z" />
+                    <path class="hello-path hello-hole" style="stroke-dasharray:106.5;stroke-dashoffset:106.5;animation-delay:280ms,760ms,950ms;animation-duration:110ms,220ms,900ms" d="M 194.00,126.00 C 196.50,127.00 197.50,129.33 198.00,132.00 C 198.50,134.67 198.33,138.50 197.00,142.00 C 195.67,145.50 193.67,149.33 190.00,153.00 C 186.33,156.67 178.17,164.17 175.00,164.00 C 171.83,163.83 171.33,156.33 171.00,152.00 C 170.67,147.67 171.00,142.33 173.00,138.00 C 175.00,133.67 179.50,128.00 183.00,126.00 C 186.50,124.00 191.50,125.00 194.00,126.00 Z" />
+                    <path class="hello-path hello-hole" style="stroke-dasharray:164.0;stroke-dashoffset:164.0;animation-delay:420ms,760ms,950ms;animation-duration:110ms,220ms,900ms" d="M 266.00,73.00 C 268.33,72.67 269.67,72.50 270.00,77.00 C 270.33,81.50 270.00,92.17 268.00,100.00 C 266.00,107.83 262.17,116.67 258.00,124.00 C 253.83,131.33 245.67,142.83 243.00,144.00 C 240.33,145.17 241.17,139.00 242.00,131.00 C 242.83,123.00 245.67,104.67 248.00,96.00 C 250.33,87.33 253.00,82.83 256.00,79.00 C 259.00,75.17 263.67,73.33 266.00,73.00 Z" />
+                    <path class="hello-path hello-hole" style="stroke-dasharray:162.4;stroke-dashoffset:162.4;animation-delay:520ms,760ms,950ms;animation-duration:110ms,220ms,900ms" d="M 325.00,73.00 C 327.33,72.17 328.50,72.33 329.00,76.00 C 329.50,79.67 330.33,86.67 328.00,95.00 C 325.67,103.33 319.33,117.83 315.00,126.00 C 310.67,134.17 304.17,144.33 302.00,144.00 C 299.83,143.67 301.00,132.00 302.00,124.00 C 303.00,116.00 305.83,103.17 308.00,96.00 C 310.17,88.83 312.17,84.83 315.00,81.00 C 317.83,77.17 322.67,73.83 325.00,73.00 Z" />
+                    <path class="hello-path hello-hole" style="stroke-dasharray:137.4;stroke-dashoffset:137.4;animation-delay:620ms,760ms,950ms;animation-duration:110ms,220ms,900ms" d="M 387.00,127.00 C 390.50,128.17 392.17,131.17 393.00,136.00 C 393.83,140.83 393.83,150.33 392.00,156.00 C 390.17,161.67 385.00,167.00 382.00,170.00 C 379.00,173.00 376.67,173.33 374.00,174.00 C 371.33,174.67 368.33,174.83 366.00,174.00 C 363.67,173.17 361.50,171.17 360.00,169.00 C 358.50,166.83 356.83,165.67 357.00,161.00 C 357.17,156.33 358.50,146.33 361.00,141.00 C 363.50,135.67 367.67,131.33 372.00,129.00 C 376.33,126.67 383.50,125.83 387.00,127.00 Z" />
+                </g>
+            </svg>
+        </div>
+        <div class="intro-line" data-line="2" aria-hidden="true">I'm Mo Ariz.</div>
+        <div class="intro-progress-track" aria-hidden="true">
+            <div class="intro-progress-fill" id="introProgress"></div>
+        </div>
+    </div>
 
     <nav>
         <div class="logo">MA</div>
@@ -1548,38 +2242,44 @@
             <li><a href="#projects">Projects</a></li>
             <!-- <li><a href="#blog">Blog</a></li> -->
             <li><a href="#resume">Resume</a></li>
-            <!-- <li><a href="static/Mo_Ariz_CV(Ds&ml).pdf" target="_blank">CV</a></li> -->
+            <!-- <li><a href="static/Mo_Ariz_CV(Ds&ml).pdf" target="_blank" rel="noopener noreferrer">CV</a></li> -->
             <li><a href="#certificates">Achievements</a></li>
             <li><a href="#chat-section">AI Assistant</a></li>
             <li><a href="#contact">Contact</a></li>
-            <li><button class="theme-toggle" id="themeToggle">
+            <li><button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light theme">
                     <i class="fa-solid fa-moon"></i>
                 </button></li>
         </ul>
     </nav>
     <!-- Hero Section -->
     <section id="hero">
+        <canvas id="heroCanvas" aria-hidden="true"></canvas>
         <div class="hero-glow"></div>
-        <div>
-            <div class="hero-tag"><span style="animation: pulse 1s infinite; font-size :medium;">✦</span> Open to
-                entry-level opportunities</div>
-            <h1>Hi, I'm <span>Mo Ariz</span></h1>
-            <div class="hero-roles">
-                <span class="role-pill">Data Science Enthusiast</span>
-                <span class="role-pill">Data Analyst</span>
-                <span class="role-pill">Python Developer</span>
-                <span class="role-pill">ML Developer</span>
-            </div>
-            <p class="hero-sub">I transform raw data into meaningful insights — from preprocessing and EDA to building
-                and deploying machine learning models that solve real-world problems.</p>
-            <div class="hero-btns">
-                <button class="btn btn-primary"
+        <div class="hero-content">
+            <div class="hero-tag hero-reveal" style="--d:0s"><span
+                    style="animation: pulse 1s infinite; font-size :medium;">✦</span> Open to entry-level
+                opportunities</div>
+            <h1 class="hero-reveal" style="--d:.1s">MO <span>ARIZ</span></h1>
+            <p class="hero-position hero-reveal" style="--d:.2s">Builder • Problem Solver • Data &amp; AI</p>
+            <p class="hero-sub hero-reveal" style="--d:.3s">I build practical solutions across data, artificial
+                intelligence, and software — from analysis and machine learning to intelligent applications and
+                deployment. Python, SQL, Power BI, Flask, Django, and computer vision, applied to real problems.</p>
+            <div class="hero-btns hero-reveal" style="--d:.4s">
+                <button class="btn btn-primary" data-magnetic
                     onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">View My
                     Work</button>
-                <button class="btn btn-outline"
-                    onclick="document.getElementById('chat-section').scrollIntoView({behavior:'smooth'})">Ask Me
-                    Anything ✦</button>
-                <!-- <a href="static/Mo_Ariz_CV(Ds&ml).pdf" target="_blank" class="btn btn-outline"><i class="fa-solid fa-download fa-bounce btn"></i>Resume</a> -->
+                <a href="static/ArizCV_Ai.pdf" download="ArizCV_Ai.pdf" class="btn btn-outline" data-magnetic><i
+                        class="fa-solid fa-download"></i> Download Resume</a>
+                <button class="btn btn-outline" data-magnetic
+                    onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contact
+                    Me</button>
+            </div>
+            <div class="hero-links hero-reveal" style="--d:.5s">
+                <a href="https://www.linkedin.com/in/mo-ariz/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i
+                        class="fa-brands fa-linkedin"></i></a>
+                <a href="https://github.com/9ariz1" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i
+                        class="fa-brands fa-github"></i></a>
+                <a href="#chat-section" aria-label="Ask my AI assistant"><i class="fa-solid fa-robot"></i></a>
             </div>
         </div>
     </section>
@@ -1589,32 +2289,30 @@
         <div class="about-grid">
             <div style="text-align:center">
                 <div class="avatar" style="overflow:hidden;padding:0">
-                    <img src="static/profile.png" style="width:100%;height:100%;object-fit:cover;border-radius:50%">
+                    <img src="static/profile.png" alt="Portrait of Mo Ariz"
+                        style="width:100%;height:100%;object-fit:cover;border-radius:50%">
                 </div>
             </div>
             <div class="about-text">
                 <div class="section-label">About Me</div>
-                <h2 class="section-title" style="margin-bottom:1rem">Data-driven problem solver</h2>
-                <p class="justify-content-center">I am an entry-level Data Scientist, Analyst, and Python Developer
-                    based in South Delhi, India, passionate
-                    about turning data into meaningful insights and real-world solutions.</p>
-                <p>I specialize in the complete machine learning pipeline — from data preprocessing and exploratory data
-                    analysis to building and deploying models. I have hands-on experience working with CNNs, Django, and
-                    Flask, and enjoy creating solutions that go beyond notebooks and deliver practical value.</p>
-                <p>Currently, I am pursuing a B.Tech in Computer Science Engineering at Integral University while
-                    working
-                    as a Data Science Trainee at SoftPro India, where I am gaining real-world experience in solving
-                    data-driven problems.
-                </p>
-                <p>I am driven by curiosity, continuous learning, and the challenge of transforming complex data into
-                    simple, actionable insights.
-                    <br />
-
-                    🚀 Actively seeking entry-level opportunities where I can contribute, grow, and make an impact.
-                </p>
+                <h2 class="section-title" style="margin-bottom:1rem">A builder across data, AI & software</h2>
+                <p class="justify-content-center">I'm based in South Delhi, India, with a B.Tech in Computer Science
+                    & Engineering and a B.Sc. in Mathematics. I work across the full stack of a data-and-AI
+                    problem — analysis, machine learning, and the software that puts it in front of a user.</p>
+                <p>My toolkit spans Python, SQL, Power BI, and Excel for analysis and reporting; Scikit-learn,
+                    TensorFlow, and OpenCV for machine learning and computer vision; and Flask, Django, and
+                    Streamlit for shipping what I build as a working application. I've applied this across 10
+                    projects — from a Power BI sales dashboard and an ML-powered ATS system to a real-time
+                    object detection tool.</p>
+                <p>I completed my B.Tech in 2026 and completed a Data Science traineeship at SoftPro India,
+                    building on internship experience at Gladify Edutech and Softskill, where I worked with real
+                    datasets, preprocessing, and ML models under practical constraints and deadlines.</p>
+                <p>I'm driven by taking ownership of a problem — understanding it, learning what it needs, building
+                    a solution, and delivering something that actually works — and I'm actively seeking entry-level
+                    roles in Data Analytics, Data Science, Python Development, or ML/AI Development.</p>
                 <div class="about-stats">
                     <div class="stat">
-                        <div class="stat-num">7</div>
+                        <div class="stat-num">10</div>
                         <div class="stat-lbl">Projects</div>
                     </div>
                     <div class="stat">
@@ -1626,14 +2324,37 @@
                         <div class="stat-lbl">Internships</div>
                     </div>
                     <div class="stat">
-                        <div class="stat-num">10+</div>
-                        <div class="stat-lbl">Certificate</div>
+                        <div class="stat-num">11</div>
+                        <div class="stat-lbl">Certificates</div>
                     </div>
                     <div class="stat">
-                        <div class="stat-num">84%</div>
-                        <div class="stat-lbl">B.Sc. Score</div>
+                        <div class="stat-num">83%</div>
+                        <div class="stat-lbl">B.Tech Score</div>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <div class="process-strip">
+            <div class="process-step">
+                <div class="process-num">01</div>
+                <div class="process-title">Think</div>
+                <div class="process-desc">Understand the problem before touching a tool.</div>
+            </div>
+            <div class="process-step">
+                <div class="process-num">02</div>
+                <div class="process-title">Learn</div>
+                <div class="process-desc">Research the data, the domain, and what's actually needed.</div>
+            </div>
+            <div class="process-step">
+                <div class="process-num">03</div>
+                <div class="process-title">Build</div>
+                <div class="process-desc">Turn the idea into a working solution — model, dashboard, or app.</div>
+            </div>
+            <div class="process-step">
+                <div class="process-num">04</div>
+                <div class="process-title">Deliver</div>
+                <div class="process-desc">Own it end to end, and ship something that works.</div>
             </div>
         </div>
     </section>
@@ -1645,10 +2366,10 @@
         <p class="section-sub" style="margin-bottom:2rem">Strong foundation in Mathematics and Computer Science.</p>
         <div class="edu-grid">
             <div class="edu-card">
-                <div class="edu-deg">B.Tech in Computer Science</div>
+                <div class="edu-deg">B.Tech in Computer Science & Engineering</div>
                 <div class="edu-inst">Integral University, Lucknow</div>
-                <div class="edu-meta"><span class="edu-year">Jun 2023 – Jul 2026</span><span class="edu-grade">In
-                        Progress</span></div>
+                <div class="edu-meta"><span class="edu-year">2023 – 2026</span><span class="edu-grade">83%</span>
+                </div>
             </div>
             <div class="edu-card">
                 <div class="edu-deg">B.Sc. in Mathematics</div>
@@ -1675,46 +2396,95 @@
     <section id="skills">
         <div class="section-label">Skills</div>
         <h2 class="section-title">Technical expertise</h2>
-        <p class="section-sub">A full stack of data science and development skills built through projects and
-            internships.</p>
-        <div class="skills-section">
-            <div class="skill-group">
-                <div class="skill-group-title">Languages & Databases</div>
+        <p class="section-sub">A multidisciplinary stack spanning data, AI, and software — built through projects,
+            internships, and research.</p>
+        <div class="skill-nodes" id="skillNodes">
+            <button class="skill-node active" data-cat="all">All</button>
+            <button class="skill-node" data-cat="programming">Programming</button>
+            <button class="skill-node" data-cat="analytics">Data Analytics & BI</button>
+            <button class="skill-node" data-cat="ml">Machine Learning</button>
+            <button class="skill-node" data-cat="ai">AI, DL & Computer Vision</button>
+            <button class="skill-node" data-cat="web">Web Development</button>
+            <button class="skill-node" data-cat="dataeng">Data Engineering</button>
+            <button class="skill-node" data-cat="db">Databases</button>
+            <button class="skill-node" data-cat="cloud">Cloud, DevOps & Tools</button>
+            <button class="skill-node" data-cat="core">Core CS & Research</button>
+        </div>
+        <div class="skills-section" id="skillsGrid">
+            <div class="skill-group" data-cat="programming">
+                <div class="skill-group-title">Programming</div>
                 <div class="skill-tags"><span class="skill-tag">Python</span><span class="skill-tag">SQL</span><span
-                        class="skill-tag">MongoDB</span><span class="skill-tag">Html</span><span
-                        class="skill-tag">Css</span><span class="skill-tag">Javascript</span></div>
+                        class="skill-tag">HTML</span><span class="skill-tag">CSS</span><span
+                        class="skill-tag">JavaScript</span></div>
             </div>
-            <div class="skill-group">
-                <div class="skill-group-title">Data Analysis & BI</div>
-                <div class="skill-tags"><span class="skill-tag">EDA</span><span class="skill-tag">Data
-                        Cleaning</span><span class="skill-tag">Data Preprocessing</span><span
-                        class="skill-tag">Statistical Analysis</span><span class="skill-tag">MS Excel</span><span
-                        class="skill-tag">Power BI</span><span class="skill-tag">DAX</span><span
-                        class="skill-tag">VLOOKUP</span></div>
-            </div>
-            <div class="skill-group">
-                <div class="skill-group-title">Machine Learning</div>
-                <div class="skill-tags"><span class="skill-tag">Supervised Learning</span><span
-                        class="skill-tag">Unsupervised Learning</span><span class="skill-tag">Feature
-                        Selection</span><span class="skill-tag">CNNs</span><span
-                        class="skill-tag">Scikit-learn</span><span class="skill-tag">Computer Vision</span></div>
-            </div>
-            <div class="skill-group">
-                <div class="skill-group-title">Libraries</div>
+            <div class="skill-group" data-cat="analytics">
+                <div class="skill-group-title">Data Analytics & BI</div>
                 <div class="skill-tags"><span class="skill-tag">Pandas</span><span class="skill-tag">NumPy</span><span
-                        class="skill-tag">Matplotlib</span><span class="skill-tag">Seaborn</span><span
-                        class="skill-tag">Streamlit</span><span class="skill-tag">OpenCV</span></div>
+                        class="skill-tag">EDA</span><span class="skill-tag">Data Cleaning</span><span
+                        class="skill-tag">Data Preprocessing</span><span class="skill-tag">Statistical
+                        Analysis</span><span class="skill-tag">KPI Reporting</span><span class="skill-tag">Data
+                        Visualization</span><span class="skill-tag">Matplotlib</span><span
+                        class="skill-tag">Seaborn</span><span class="skill-tag">Plotly</span><span
+                        class="skill-tag">Power BI</span><span class="skill-tag">MS Excel</span><span
+                        class="skill-tag">DAX</span><span class="skill-tag">VLOOKUP</span></div>
             </div>
-            <div class="skill-group">
-                <div class="skill-group-title">Deployment</div>
+            <div class="skill-group" data-cat="ml">
+                <div class="skill-group-title">Machine Learning</div>
+                <div class="skill-tags"><span class="skill-tag">Regression</span><span
+                        class="skill-tag">Classification</span><span class="skill-tag">Clustering</span><span
+                        class="skill-tag">Supervised Learning</span><span class="skill-tag">Unsupervised
+                        Learning</span><span class="skill-tag">Feature Engineering</span><span
+                        class="skill-tag">Feature Extraction</span><span class="skill-tag">Model
+                        Evaluation</span><span class="skill-tag">Model Deployment</span><span
+                        class="skill-tag">Scikit-learn</span><span class="skill-tag">XGBoost</span></div>
+            </div>
+            <div class="skill-group" data-cat="ai">
+                <div class="skill-group-title">AI, Deep Learning & Computer Vision</div>
+                <div class="skill-tags"><span class="skill-tag">TensorFlow</span><span
+                        class="skill-tag">PyTorch</span><span class="skill-tag">OpenCV</span><span
+                        class="skill-tag">Computer Vision</span><span class="skill-tag">CNNs</span><span
+                        class="skill-tag">Object Detection</span><span class="skill-tag">Face Detection</span><span
+                        class="skill-tag">NLP</span><span class="skill-tag">TF-IDF</span><span
+                        class="skill-tag">Prompt Engineering</span><span class="skill-tag">LLM
+                        Applications</span></div>
+            </div>
+            <div class="skill-group" data-cat="web">
+                <div class="skill-group-title">Web Development</div>
                 <div class="skill-tags"><span class="skill-tag">Flask</span><span class="skill-tag">Django</span><span
-                        class="skill-tag">Pickle</span><span class="skill-tag">Streamlit</span></div>
+                        class="skill-tag">Streamlit</span><span class="skill-tag">REST APIs</span><span
+                        class="skill-tag">Bootstrap</span></div>
             </div>
-            <div class="skill-group">
-                <div class="skill-group-title">Tools & Concepts</div>
-                <div class="skill-tags"><span class="skill-tag">Git</span><span class="skill-tag">Git Bash</span><span
-                        class="skill-tag">Jupyter</span><span class="skill-tag">OOP</span><span class="skill-tag">Unit
-                        Testing</span><span class="skill-tag">Power BI</span></div>
+            <div class="skill-group" data-cat="dataeng">
+                <div class="skill-group-title">Data Engineering</div>
+                <div class="skill-tags"><span class="skill-tag">ETL</span><span class="skill-tag">ELT</span><span
+                        class="skill-tag">Data Extraction</span><span class="skill-tag">Data Ingestion</span><span
+                        class="skill-tag">Data Transformation</span><span class="skill-tag">Data Loading</span><span
+                        class="skill-tag">Data Validation</span><span class="skill-tag">Data Pipelines</span><span
+                        class="skill-tag">Workflow Automation</span><span class="skill-tag">Apache Airflow</span><span
+                        class="skill-tag">Apache Spark</span><span class="skill-tag">PySpark</span></div>
+            </div>
+            <div class="skill-group" data-cat="db">
+                <div class="skill-group-title">Databases</div>
+                <div class="skill-tags"><span class="skill-tag">MySQL</span><span
+                        class="skill-tag">PostgreSQL</span><span class="skill-tag">SQLite</span><span
+                        class="skill-tag">MongoDB</span><span class="skill-tag">Relational Databases</span><span
+                        class="skill-tag">SQL Joins</span><span class="skill-tag">Query Optimization</span></div>
+            </div>
+            <div class="skill-group" data-cat="cloud">
+                <div class="skill-group-title">Cloud, DevOps & Tools</div>
+                <div class="skill-tags"><span class="skill-tag">AWS</span><span class="skill-tag">Docker</span><span
+                        class="skill-tag">Linux</span><span class="skill-tag">Git</span><span
+                        class="skill-tag">GitHub</span><span class="skill-tag">CI/CD</span><span
+                        class="skill-tag">Snowflake</span><span class="skill-tag">Jupyter</span><span
+                        class="skill-tag">Pickle</span></div>
+            </div>
+            <div class="skill-group" data-cat="core">
+                <div class="skill-group-title">Core CS & Research</div>
+                <div class="skill-tags"><span class="skill-tag">Data Structures & Algorithms</span><span
+                        class="skill-tag">OOP</span><span class="skill-tag">DBMS</span><span
+                        class="skill-tag">Operating Systems</span><span class="skill-tag">Computer
+                        Networks</span><span class="skill-tag">Mathematical Modeling</span><span
+                        class="skill-tag">Experimentation & Error Analysis</span></div>
             </div>
         </div>
     </section>
@@ -1725,15 +2495,19 @@
         <h2 class="section-title">Internships & training</h2>
         <p class="section-sub" style="margin-bottom:2rem">Hands-on industry experience in data science and web
             development.</p>
-        <div class="intern-list">
-            <div class="intern-card">
+        <div class="timeline">
+            <div class="timeline-line"></div>
+            <div class="timeline-item intern-card">
+                <div class="timeline-dot"></div>
                 <div>
                     <div class="intern-role">Data Science using Python <span class="proj-tag">On-Site</span></div>
                     <div class="intern-org">SOFTPRO INDIA</div>
+                    <p class="intern-desc">Learned advanced ML concepts and worked on real datasets.</p>
                 </div>
-                <span class="intern-period">Oct 2025 – Ongoing</span>
+                <span class="intern-period">Oct 2025 – May 2026</span>
             </div>
-            <div class="intern-card">
+            <div class="timeline-item intern-card">
+                <div class="timeline-dot"></div>
                 <div>
                     <div class="intern-role">Data Science using Python Summer Internship <span
                             class="proj-tag">On-Site</span></div>
@@ -1741,14 +2515,18 @@
                 </div>
                 <span class="intern-period">June 2025 – Sep 2025</span>
             </div>
-            <div class="intern-card">
+            <div class="timeline-item intern-card">
+                <div class="timeline-dot"></div>
                 <div>
                     <div class="intern-role">Data Science Intern <span class="proj-tag">Hybrid</span></div>
                     <div class="intern-org">Gladify Edutech Pvt. Ltd.</div>
+                    <p class="intern-desc">Worked on real-world datasets, preprocessing, and machine learning
+                        models.</p>
                 </div>
                 <span class="intern-period">Mar 2025 – Apr 2025</span>
             </div>
-            <div class="intern-card">
+            <div class="timeline-item intern-card">
+                <div class="timeline-dot"></div>
                 <div>
                     <div class="intern-role">Web Development (Front End) <span class="proj-tag">On-Site</span></div>
                     <div class="intern-org">SOFTSKILL</div>
@@ -1762,101 +2540,119 @@
     <section id="projects">
         <div class="section-label">Projects</div>
         <h2 class="section-title">Things I've built</h2>
-        <p class="section-sub">Real-world projects spanning ML, computer vision, data analytics, and full-stack
-            development.</p>
+        <p class="section-sub">Real-world projects spanning data analytics, machine learning, computer vision, and
+            full-stack development.</p>
+
+        <div class="proj-subhead">Featured Projects</div>
         <div class="projects-grid">
 
-            <div class="project-card">
-                <div class="proj-icon">🎯</div>
-                <div class="proj-title">Real-Time Object Detection</div>
-                <div class="proj-desc">Detects 92 objects via live webcam using computer vision and deep learning
-                    techniques for fast, accurate real-time identification.</div>
-                <div class="proj-tags"><span class="proj-tag">Python</span><span class="proj-tag">Computer
-                        Vision</span><span class="proj-tag">Deep Learning</span><span class="proj-tag">CNN</span></div>
-                <a href="https://github.com/9ariz1/Real-Time-Object-Detection" target="_blank" class="proj-link">GitHub
-                    →</a>
+            <div class="project-card featured">
+                <div class="proj-icon">📊</div>
+                <div class="proj-title">Amazon Global Sales Dashboard</div>
+                <div class="proj-desc">Built an interactive Power BI dashboard on Amazon sales data (2012–2015) using
+                    DAX measures and data modeling to surface KPIs, product returns, and top/bottom performers by
+                    profit on an interactive global map.</div>
+                <div class="proj-tags"><span class="proj-tag">Power BI</span><span class="proj-tag">DAX</span><span
+                        class="proj-tag">Data Modeling</span><span class="proj-tag">Business Insights</span></div>
+                <a href="https://app.powerbi.com/view?r=eyJrIjoiMzZhMmViNGEtZTJiMS00ZmRhLTlhYjEtMzBmNGViZDA5YmQyIiwidCI6IjlhOGVmYWQ4LTYzOTQtNGFkYi1hNGI2LWJlNWZlZTk3Zjc5ZSJ9&pageName=c0b150085e1ad02a0ce0"
+                    target="_blank" rel="noopener noreferrer" class="proj-link">Live Dashboard →</a>
             </div>
 
-            <div class="project-card">
+            <div class="project-card featured">
                 <div class="proj-icon">📚</div>
                 <div class="proj-title">Course Recommendation System</div>
-                <div class="proj-desc">ML-based content filtering system for personalised course recommendations, with
-                    an interactive Streamlit web app for real-time results.</div>
+                <div class="proj-desc">Built a content-based recommendation engine using Python and Scikit-learn to
+                    recommend relevant courses based on user interests and course metadata. Deployed as an
+                    interactive Streamlit app.</div>
                 <div class="proj-tags"><span class="proj-tag">Python</span><span
                         class="proj-tag">Scikit-learn</span><span class="proj-tag">Streamlit</span><span
                         class="proj-tag">Content Filtering</span></div>
-                <a href="https://github.com/9ariz1/Course-recommendation-System" target="_blank"
+                <a href="https://github.com/9ariz1/Course-recommendation-System" target="_blank" rel="noopener noreferrer"
                     class="proj-link">GitHub →</a>
+            </div>
+
+            <div class="project-card featured">
+                <div class="proj-icon">📈</div>
+                <div class="proj-title">Gamma Squeeze Orchestrator</div>
+                <div class="proj-desc">Built an analytics dashboard that processes live options-chain data with
+                    Pandas and yfinance to flag potential gamma-squeeze pressure, classifying signals as Low / Medium
+                    / High through interactive Streamlit visualizations.</div>
+                <div class="proj-tags"><span class="proj-tag">Python</span><span class="proj-tag">Pandas</span><span
+                        class="proj-tag">yfinance</span><span class="proj-tag">Streamlit</span><span
+                        class="proj-tag">Matplotlib</span></div>
+                <a href="https://github.com/9ariz1/Gamma-Squeeze-Orchestrator" target="_blank" rel="noopener noreferrer" class="proj-link">GitHub
+                    →</a>
+            </div>
+
+            <div class="project-card featured">
+                <div class="proj-icon">🎯</div>
+                <div class="proj-title">Real-Time Object Detection</div>
+                <div class="proj-desc">Built a real-time detection system using Python, OpenCV, and a CNN model that
+                    identifies 92 object classes from a live webcam feed for fast, accurate recognition.</div>
+                <div class="proj-tags"><span class="proj-tag">Python</span><span class="proj-tag">Computer
+                        Vision</span><span class="proj-tag">Deep Learning</span><span class="proj-tag">CNN</span></div>
+                <a href="https://github.com/9ariz1/Real-Time-Object-Detection" target="_blank" rel="noopener noreferrer" class="proj-link">GitHub
+                    →</a>
+            </div>
+        </div>
+
+        <div class="proj-subhead">Other Projects</div>
+        <div class="projects-grid">
+
+            <div class="project-card">
+                <div class="proj-icon">💼</div>
+                <div class="proj-title">SmartHire AI — ML-Powered ATS</div>
+                <div class="proj-desc">Built an AI-powered applicant tracking system using NLP and Scikit-learn/XGBoost
+                    to parse resumes, match them against job descriptions with TF-IDF, and predict hiring
+                    likelihood.</div>
+                <div class="proj-tags"><span class="proj-tag">Python</span><span class="proj-tag">Flask</span><span
+                        class="proj-tag">NLP</span><span class="proj-tag">XGBoost</span><span
+                        class="proj-tag">TF-IDF</span></div>
+                <a href="https://github.com/9ariz1/SmartHire_AI" target="_blank" rel="noopener noreferrer" class="proj-link">GitHub →</a>
             </div>
 
             <div class="project-card">
                 <div class="proj-icon">🏥</div>
                 <div class="proj-title">AI-Based Disease Prediction</div>
-                <div class="proj-desc">Django web app using ML for healthcare disease prediction. Includes data
-                    preprocessing, feature scaling, model training, and Pickle deployment.</div>
+                <div class="proj-desc">Built a Django web app that predicts disease risk from patient data, handling
+                    preprocessing, feature scaling, model training, and Pickle-based deployment end to end.</div>
                 <div class="proj-tags"><span class="proj-tag">Python</span><span class="proj-tag">Django</span><span
                         class="proj-tag">Scikit-learn</span><span class="proj-tag">Pickle</span></div>
-                <a href="https://github.com/9ariz1/AI-Ml---Based-Disease-Prediction-System" target="_blank"
+                <a href="https://github.com/9ariz1/AI-Ml---Based-Disease-Prediction-System" target="_blank" rel="noopener noreferrer"
                     class="proj-link">GitHub →</a>
-            </div>
-
-            <div class="project-card">
-                <div class="proj-icon">📈</div>
-                <div class="proj-title">Gamma Squeeze Orchestrator</div>
-                <div class="proj-desc">Analytics dashboard to detect gamma pressure and potential squeeze zones using
-                    options chain data. Classifies signals as Low / Medium / High with interactive Streamlit
-                    visualizations.</div>
-                <div class="proj-tags"><span class="proj-tag">Python</span><span class="proj-tag">Pandas</span><span
-                        class="proj-tag">yfinance</span><span class="proj-tag">Streamlit</span><span
-                        class="proj-tag">Matplotlib</span></div>
-                <a href="https://github.com/9ariz1/Gamma-Squeeze-Orchestrator" target="_blank" class="proj-link">GitHub
-                    →</a>
             </div>
 
             <div class="project-card">
                 <div class="proj-icon">🌤️</div>
                 <div class="proj-title">Real-Time Weather Forecast App</div>
-                <div class="proj-desc">Flask web app that fetches live weather data (temperature, humidity, wind speed,
-                    pressure) by city name using the OpenWeatherMap API, with a polished glassmorphism UI.</div>
+                <div class="proj-desc">Built a Flask web app that fetches live temperature, humidity, wind speed, and
+                    pressure data by city using the OpenWeatherMap API, with a glassmorphism UI.</div>
                 <div class="proj-tags"><span class="proj-tag">Python</span><span class="proj-tag">Flask</span><span
                         class="proj-tag">OpenWeatherMap API</span><span class="proj-tag">HTML/CSS</span></div>
-                <a href="https://github.com/9ariz1/Weather_Checking-" target="_blank" class="proj-link">GitHub →</a>
+                <a href="https://github.com/9ariz1/Weather_Checking-" target="_blank" rel="noopener noreferrer" class="proj-link">GitHub →</a>
             </div>
 
             <div class="project-card">
                 <div class="proj-icon">👤</div>
                 <div class="proj-title">Real-Time Face Detection</div>
-                <div class="proj-desc">Uses OpenCV's Haar Cascade Classifier to detect human faces via live webcam feed,
-                    highlighting each detected face with a green rectangle in real-time.</div>
+                <div class="proj-desc">Built a face detection tool using OpenCV's Haar Cascade Classifier to identify
+                    faces from a live webcam feed, drawing a bounding box around each detection in real time.</div>
                 <div class="proj-tags"><span class="proj-tag">Python</span><span class="proj-tag">OpenCV</span><span
                         class="proj-tag">Haar Cascade</span><span class="proj-tag">Computer Vision</span></div>
-                <a href="https://github.com/9ariz1/Face_Detection_project" target="_blank" class="proj-link">GitHub
+                <a href="https://github.com/9ariz1/Face_Detection_project" target="_blank" rel="noopener noreferrer" class="proj-link">GitHub
                     →</a>
             </div>
 
             <div class="project-card">
-                <div class="proj-icon">📊</div>
-                <div class="proj-title">Amazon Global Sales Dashboard</div>
-                <div class="proj-desc">Interactive Power BI dashboard on Amazon sales data (2012–2015) with year-wise
-                    analysis, KPI tracking, product return analysis, top/bottom products by profit, and an interactive
-                    global map.</div>
-                <div class="proj-tags"><span class="proj-tag">Power BI</span><span class="proj-tag">DAX</span><span
-                        class="proj-tag">Data Modeling</span><span class="proj-tag">Business Insights</span></div>
-                <a href="https://app.powerbi.com/view?r=eyJrIjoiMzZhMmViNGEtZTJiMS00ZmRhLTlhYjEtMzBmNGViZDA5YmQyIiwidCI6IjlhOGVmYWQ4LTYzOTQtNGFkYi1hNGI2LWJlNWZlZTk3Zjc5ZSJ9&pageName=c0b150085e1ad02a0ce0"
-                    target="_blank" class="proj-link">Live Dashboard →</a>
-            </div>
-
-            <div class="project-card">
-                <!-- <div class="wip-badge">🚧 In Progress</div> -->
+                <div class="wip-badge">🚧 In Progress</div>
                 <div class="proj-icon">🎓</div>
                 <div class="proj-title">Smart Attendance System</div>
-                <div class="proj-desc">Face recognition-based attendance system that automatically marks attendance
-                    using live webcam feed — eliminating manual entry with real-time detection and recognition.</div>
+                <div class="proj-desc">Building a face-recognition attendance system that marks attendance
+                    automatically from a live webcam feed, removing manual entry with real-time recognition.</div>
                 <div class="proj-tags"><span class="proj-tag">Python</span><span class="proj-tag">OpenCV</span><span
                         class="proj-tag">Face Recognition</span><span class="proj-tag">Deep Learning</span></div>
-                <!-- <span class="proj-link" style="cursor:default;opacity:0.5">GitHub coming soon</span> -->
                 <a href="https://github.com/9ariz1/Smart_Attendance_System_using_FaceRecognition_PoweredbyAI"
-                    target="_blank" class="proj-link">GitHub
+                    target="_blank" rel="noopener noreferrer" class="proj-link">GitHub
                     →</a>
             </div>
 
@@ -1864,8 +2660,8 @@
                 <div class="wip-badge">🚧 In Progress</div>
                 <div class="proj-icon">💼</div>
                 <div class="proj-title">HireHub — Job Portal</div>
-                <div class="proj-desc">Full-featured job portal platform where employers can post jobs and candidates
-                    can apply, search, and manage applications — built as a complete Django web application.</div>
+                <div class="proj-desc">Building a full-featured job portal where employers can post jobs and
+                    candidates can search, apply, and manage applications — a complete Django web application.</div>
                 <div class="proj-tags"><span class="proj-tag">Python</span><span class="proj-tag">Django</span><span
                         class="proj-tag">SQL</span><span class="proj-tag">Web Development</span></div>
                 <span class="proj-link" style="cursor:default;opacity:0.5">GitHub coming soon</span>
@@ -1937,7 +2733,7 @@
         </p>
         <div class="hero-btns">
             <a href="https://drive.google.com/file/d/1DBvCVUYsFlj8cb-cQqDNtzugn5HR9WCQ/view?usp=drivesdk"
-                target="_blank" class="btn btn-outline"><i class="fa-solid fa-eye fa-beat-fade"
+                target="_blank" rel="noopener noreferrer" class="btn btn-outline"><i class="fa-solid fa-eye fa-beat-fade"
                     style="margin-left: -5px;"></i> View Resume</a>
             <a href="static/ArizCV_Ai.pdf" download="ArizCV_Ai.pdf" class="btn btn-outline"><i
                     class="fa-solid fa-download fa-bounce"></i> Download Resume</a>
@@ -1952,7 +2748,7 @@
         </p>
         <div class="cert-grid">
             <a href="https://drive.google.com/file/d/1WTojIeQ3MQUBQ_lfTqv1Z3ClPvfX9wek/view?usp=drive_link"
-                target="_blank">
+                target="_blank" rel="noopener noreferrer">
                 <div class="cert-card">
                     <div class="cert-icon">🏆</div>
                     <div class="cert-badge">Microsoft</div>
@@ -1966,7 +2762,7 @@
             </a>
 
             <a href="https://drive.google.com/file/d/1sMgjrDRiO9Ww0iCxVcv0j8qh0VKc8HMS/view?usp=drive_link"
-                target="_blank">
+                target="_blank" rel="noopener noreferrer">
                 <div class="cert-card" style="--cert-color:#c74634">
                     <div class="cert-icon">☁️</div>
                     <div class="cert-badge"
@@ -1982,42 +2778,42 @@
                 </div>
             </a>
 
-            <a href="https://drive.google.com/file/d/1EfOwUsrP97wlsKZTnj-FxjvHl1BMz4St/view?usp=drive_link"
-                target="_blank">
+            <a href="https://drive.google.com/file/d/1OLQbiAr9g4DR6DV95JhpGZjkst0LFGvY/view?usp=drive_link"
+                target="_blank" rel="noopener noreferrer">
                 <div class="cert-card">
-                    <div class="cert-icon">📊</div>
+                    <div class="cert-icon">👾</div>
                     <div class="cert-badge"
-                        style="background:rgba(34,197,94,0.15);color:#4ade80;border-color:rgba(34,197,94,0.3)">
+                        style="background:rgba(99, 102, 241,0.15);color:#6366f1;border-color:rgba(99, 102, 241,0.3)">
                         University</div>
-                    <div class="cert-name">Data Analytics</div>
+                    <div class="cert-name">Data Science and Machine Learning with Python</div>
                     <div class="cert-meta">
                         <span class="cert-issuer">Integral University</span>
-                        <span class="cert-date">30 Oct 2025</span>
+                        <span class="cert-date">14 Aug 2025</span>
                     </div>
-                    <div class="cert-view" style="color:#4ade80;border-color:rgba(34,197,94,0.25)">View Certificate →
+                    <div class="cert-view" style="color:#6366f1;border-color:rgba(99, 102, 241,0.25)">View Certificate →
                     </div>
                 </div>
             </a>
 
             <a href="https://drive.google.com/file/d/1ygsTXgDPnj7EYo5_ULDX1HvScwBU5hif/view?usp=drive_link"
-                target="_blank">
+                target="_blank" rel="noopener noreferrer">
                 <div class="cert-card">
                     <div class="cert-icon">💾</div>
                     <div class="cert-badge"
-                        style="background:rgba(34,197,94,0.15);color:#a5de4a;border-color:rgba(34,197,94,0.3)">
+                        style="background:rgba(99, 102, 241,0.15);color:#a5de4a;border-color:rgba(99, 102, 241,0.3)">
                         Cognitive Class</div>
                     <div class="cert-name">SQL and Relational Databases 101</div>
                     <div class="cert-meta">
                         <span class="cert-issuer">Cognitive Class</span>
                         <span class="cert-date">06 May 2025</span>
                     </div>
-                    <div class="cert-view" style="color:#b9de4a;border-color:rgba(34,197,94,0.25)">View Certificate →
+                    <div class="cert-view" style="color:#b9de4a;border-color:rgba(99, 102, 241,0.25)">View Certificate →
                     </div>
                 </div>
             </a>
 
             <a href="https://drive.google.com/file/d/1iK4A9lbcTXF2USVJusoqMw1b9751pLxC/view?usp=drive_link"
-                target="_blank">
+                target="_blank" rel="noopener noreferrer">
                 <div class="cert-card">
                     <div class="cert-icon">🖥️</div>
                     <div class="cert-badge">Cognitive Class</div>
@@ -2030,8 +2826,44 @@
                 </div>
             </a>
 
+            <a href="https://drive.google.com/file/d/1zlRWclDyr_REZ_-Fyqq0ynhT4EyDrDGy/view?usp=drive_link"
+                target="_blank" rel="noopener noreferrer">
+                <div class="cert-card">
+                    <div class="cert-icon">🎓</div>
+                    <div class="cert-badge"
+                        style="background:rgba(99, 102, 241,0.15);color:#a5de4a;border-color:rgba(99, 102, 241,0.3)">
+                        Udemy</div>
+                    <div class="cert-name">Google Certified Professional Machine Learning Engineer (Udemy Course)</div>
+                    <div class="cert-meta">
+                        <span class="cert-issuer">Udemy</span>
+                        <span class="cert-date">15 Aug 2025</span>
+                    </div>
+                    <div class="cert-view" style="color:#b9de4a;border-color:rgba(99, 102, 241,0.25)">View Certificate →
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="cert-grid" id="moreCerts" style="display:none">
+            <a href="https://drive.google.com/file/d/1EfOwUsrP97wlsKZTnj-FxjvHl1BMz4St/view?usp=drive_link"
+                target="_blank" rel="noopener noreferrer">
+                <div class="cert-card">
+                    <div class="cert-icon">📊</div>
+                    <div class="cert-badge"
+                        style="background:rgba(99, 102, 241,0.15);color:#6366f1;border-color:rgba(99, 102, 241,0.3)">
+                        University</div>
+                    <div class="cert-name">Data Analytics</div>
+                    <div class="cert-meta">
+                        <span class="cert-issuer">Integral University</span>
+                        <span class="cert-date">30 Oct 2025</span>
+                    </div>
+                    <div class="cert-view" style="color:#6366f1;border-color:rgba(99, 102, 241,0.25)">View Certificate →
+                    </div>
+                </div>
+            </a>
+
             <a href="https://drive.google.com/file/d/1tn_rOI7gn001HuV-5P9EzOVxQqlvKrl_/view?usp=drive_link"
-                target="_blank">
+                target="_blank" rel="noopener noreferrer">
                 <div class="cert-card" style="--cert-color:#c74634">
                     <div class="cert-icon">💻</div>
                     <div class="cert-badge"
@@ -2048,42 +2880,8 @@
                 </div>
             </a>
 
-            <a href="https://drive.google.com/file/d/1OLQbiAr9g4DR6DV95JhpGZjkst0LFGvY/view?usp=drive_link"
-                target="_blank">
-                <div class="cert-card">
-                    <div class="cert-icon">👾</div>
-                    <div class="cert-badge"
-                        style="background:rgba(34,197,94,0.15);color:#4ade80;border-color:rgba(34,197,94,0.3)">
-                        University</div>
-                    <div class="cert-name">Data Science and Machine Learning with Python</div>
-                    <div class="cert-meta">
-                        <span class="cert-issuer">Integral University</span>
-                        <span class="cert-date">14 Aug 2025</span>
-                    </div>
-                    <div class="cert-view" style="color:#4ade80;border-color:rgba(34,197,94,0.25)">View Certificate →
-                    </div>
-                </div>
-            </a>
-
-            <a href="https://drive.google.com/file/d/1zlRWclDyr_REZ_-Fyqq0ynhT4EyDrDGy/view?usp=drive_link"
-                target="_blank">
-                <div class="cert-card">
-                    <div class="cert-icon">🎓</div>
-                    <div class="cert-badge"
-                        style="background:rgba(34,197,94,0.15);color:#a5de4a;border-color:rgba(34,197,94,0.3)">
-                        Udemy</div>
-                    <div class="cert-name">Google Certified Professional Machine Learning Engineer</div>
-                    <div class="cert-meta">
-                        <span class="cert-issuer">Udemy</span>
-                        <span class="cert-date">15 Aug 2025</span>
-                    </div>
-                    <div class="cert-view" style="color:#b9de4a;border-color:rgba(34,197,94,0.25)">View Certificate →
-                    </div>
-                </div>
-            </a>
-
             <a href="https://drive.google.com/file/d/1fhE1ydWIDs2Maouvx1k1O941uV2YiM6K/view?usp=drive_link"
-                target="_blank">
+                target="_blank" rel="noopener noreferrer">
                 <div class="cert-card">
                     <div class="cert-icon">🏅</div>
                     <div class="cert-badge">SoftPro India</div>
@@ -2097,7 +2895,7 @@
             </a>
 
             <a href="https://drive.google.com/file/d/1iISUBeGt4Di8-7ylXdi797UjqYwclPu6/view?usp=drive_link"
-                target="_blank">
+                target="_blank" rel="noopener noreferrer">
                 <div class="cert-card" style="--cert-color:#c74634">
                     <div class="cert-icon">🗝️</div>
                     <div class="cert-badge"
@@ -2114,21 +2912,25 @@
             </a>
 
             <a href="https://drive.google.com/file/d/1OcyESrFCgZasz4ZY5JlX_XhDCtz-Kzvk/view?usp=drive_link"
-                target="_blank">
+                target="_blank" rel="noopener noreferrer">
                 <div class="cert-card">
                     <div class="cert-icon">💼</div>
                     <div class="cert-badge"
-                        style="background:rgba(34,197,94,0.15);color:#4ade80;border-color:rgba(34,197,94,0.3)">
+                        style="background:rgba(99, 102, 241,0.15);color:#6366f1;border-color:rgba(99, 102, 241,0.3)">
                         Gladify</div>
                     <div class="cert-name">Data Science</div>
                     <div class="cert-meta">
                         <span class="cert-issuer">Gladify Pvt Ltd</span>
                         <span class="cert-date">20 May 2025</span>
                     </div>
-                    <div class="cert-view" style="color:#4ade80;border-color:rgba(34,197,94,0.25)">View Certificate →
+                    <div class="cert-view" style="color:#6366f1;border-color:rgba(99, 102, 241,0.25)">View Certificate →
                     </div>
                 </div>
             </a>
+        </div>
+        <div class="cert-toggle-wrap">
+            <button class="btn btn-outline" id="certToggleBtn" onclick="toggleCerts()">View All Certifications
+                (11)</button>
         </div>
     </section>
     <!-- Certificates Section End -->
@@ -2137,9 +2939,10 @@
         <div class="chat-wrapper">
 
             <div class="chat-intro">
-                <div class="section-label">AI Assistant</div>
-                <h2 class="section-title">Ask Me Anything</h2>
-                <p>Powered by Groq AI — ask about Mo's skills, projects, internships, or availability!</p>
+                <div class="section-label">AI Portfolio Assistant</div>
+                <h2 class="section-title">Ask My AI Portfolio Assistant</h2>
+                <p>Powered by Groq AI — an intelligent layer of this portfolio that can answer what I can build, my
+                    skills, projects, and experience in real time.</p>
             </div>
 
             <div class="chat-box">
@@ -2151,7 +2954,7 @@
                         <div>
                             <div class="chat-name">Ariz's AI Twin</div>
                             <div class="chat-status">
-                                <span class="status-dot"></span> Groq · LLaMA 3.1
+                                <span class="status-dot"></span> Powered by Groq AI
                             </div>
                         </div>
                     </div>
@@ -2170,19 +2973,22 @@
                 <!-- Quick Prompts -->
                 <div class="quick-prompts">
                     <div class="qp-label">💡 Quick questions</div>
+                    <button class="qp" onclick="sendQuick('What can you build?')">🧠 What can you build?</button>
+                    <button class="qp" onclick="sendQuick('Show me your strongest projects')">🛠️ Strongest
+                        projects</button>
                     <button class="qp" onclick="sendQuick('What are your core skills?')">⚡ Core skills</button>
-                    <button class="qp" onclick="sendQuick('Tell me about your projects')">🛠️ Projects</button>
-                    <button class="qp" onclick="sendQuick('What internships have you done?')">💼 Internships</button>
-                    <button class="qp" onclick="sendQuick('Are you open to work?')">🟢 Open to work?</button>
-                    <button class="qp" onclick="sendQuick('What makes you unique as a candidate?')">🌟 Why hire
+                    <button class="qp" onclick="sendQuick('Tell me about your experience')">💼 Experience</button>
+                    <button class="qp" onclick="sendQuick('Why should I interview you?')">🌟 Why interview
                         you?</button>
+                    <button class="qp" onclick="sendQuick('Are you open to opportunities?')">🟢 Open to
+                        opportunities?</button>
                 </div>
 
                 <!-- Input -->
                 <div class="chat-input-row">
                     <input id="chat-in" type="text" placeholder="Ask something about Mo..."
                         onkeydown="if(event.key==='Enter')sendMsg()">
-                    <button class="send-btn" onclick="sendMsg()">➤</button>
+                    <button class="send-btn" onclick="sendMsg()" aria-label="Send message">➤</button>
                 </div>
 
             </div>
@@ -2193,7 +2999,7 @@
     <section id="contact">
         <div class="section-label">Contact</div>
         <h2 class="section-title">Let's connect</h2>
-        <p class="section-sub">Actively looking for entry-level data science and analyst roles. Let's talk!</p>
+        <p class="section-sub">Actively looking for entry-level roles in data, AI, and software. Let's talk!</p>
         <div class="contact-grid">
             <a href="mailto:arizsheikh818@gmail.com">
                 <div class="contact-card">
@@ -2213,7 +3019,7 @@
                     </div>
                 </div>
             </a>
-            <a href="https://www.linkedin.com/in/mo-ariz/" target="_blank">
+            <a href="https://www.linkedin.com/in/mo-ariz/" target="_blank" rel="noopener noreferrer">
                 <div class="contact-card">
                     <div class="cc-icon">💼</div>
                     <div>
@@ -2222,7 +3028,7 @@
                     </div>
                 </div>
             </a>
-            <a href="https://github.com/9ariz1" target="_blank">
+            <a href="https://github.com/9ariz1" target="_blank" rel="noopener noreferrer">
                 <div class="contact-card">
                     <div class="cc-icon">🐙</div>
                     <div>
@@ -2231,7 +3037,7 @@
                     </div>
                 </div>
             </a>
-            <a href="https://x.com/Mo_Ariz_" target="_blank">
+            <a href="https://x.com/Mo_Ariz_" target="_blank" rel="noopener noreferrer">
                 <div class="contact-card">
                     <div class="cc-icon">✖️</div>
                     <div>
@@ -2241,7 +3047,7 @@
                 </div>
             </a>
             <a href="static/ArizCV_Ai.pdf" download="ArizCV_Ai.pdf"
-                target="_blank">
+                target="_blank" rel="noopener noreferrer">
                 <div class="contact-card">
                     <div class="cc-icon">📄</div>
                     <div>
@@ -2268,81 +3074,8 @@
     <footer>Built with ❤️ by Mo Ariz &nbsp;·&nbsp; 2026</footer>
 
     <script>
-        const PERSONA = `You are the AI portfolio assistant for Mo Ariz. Speak in first person as Mo.
-
-Personal details:
-- Based in Lucknow, India | Email: arizsheikh818@gmail.com | Phone: +91 9305178391
-- LinkedIn: linkedin.com/in/mo-ariz | GitHub: github.com/9ariz1
-
-Career objective:
-Entry-level Data Scientist, Data Analyst, and Python Developer. Strong expertise in Python, SQL, EDA, feature engineering, ML, CNNs, Flask, Django. Seeking entry-level role.
-
-Education:
-- B.Tech in Computer Science, Integral University, Lucknow (2023-2026, ongoing)
-- B.Sc. Mathematics, Ayodhya Prasad Mishra Mahavidyalaya, Unnao (2019-2022, 84%)
-
-Skills:
-Python, SQL, EDA, Data Cleaning, Preprocessing, Statistical Analysis, MS Excel, Power BI, DAX, Supervised/Unsupervised ML, Feature Selection, CNNs, Scikit-learn, OpenCV, Pandas, NumPy, Matplotlib, Seaborn, Streamlit, Flask, Django, Pickle, Git, Jupyter, OOP
-
-Internships:
-1. Data Science using Python - SOFTPRO INDIA (Oct 2025 - Ongoing)
-2. Data Science Intern - Gladify Edutech Pvt. Ltd. (Mar-Apr 2025)
-3. Web Development (Front End) - SOFTSKILL (Jun-Jul 2024)
-
-Projects (8 total):
-1. Real-Time Object Detection - detects 92 objects via webcam (Python, CNN, OpenCV)
-2. Course Recommendation System - content-based ML + Streamlit app
-3. AI-Based Disease Prediction - Django ML web app with Pickle deployment
-4. Gamma Squeeze Orchestrator - stock options analytics dashboard (Pandas, yfinance, Streamlit)
-5. Real-Time Weather Forecast App - Flask + OpenWeatherMap API
-6. Real-Time Face Detection - OpenCV Haar Cascade webcam face detection
-7. Amazon Global Sales Dashboard - Power BI dashboard (2012-2015), DAX, KPIs, global map
-8. Smart Attendance System - face recognition attendance (in progress)
-9. HireHub - Django job portal platform (in progress)
-
-Certificates/Certifications(10+):
-1. Microsoft Azure Fundamentals (Microsoft, Jul 2025)
-2. Data Science Professional (Oracle, Oct 2025)
-3. Data Analytics (Integral University, Oct 2025)
-4. SQL and Relational Databases 101 (Cognitive Class, May 2025)
-5. Python for Data Science (Cognitive Class, Aug 2025)
-6. Web Development (Softskill Institute, Jul 2024)
-7. Data Science and Machine Learning with Python (Integral University, Aug 2025)
-8. Google Certified Professional Machine Learning Engineer (Udemy, Aug 2025)
-9. Python with Data Science (SoftPro India, Aug 2025)
-10. AWS Security and Management (Guvi, Oct 2024)
-11. Data Science (Gladify Pvt Ltd, May 2025)
-
-
-Interests: Photography, Quiz Solving, Reading, Cricket, Traveling, Cooking
-Personality: Enthusiastic, humble, eager to learn. Keep answers 2-4 sentences. Use occasional emojis. Honest about being entry-level but confident about skills.
-
-When asked about projects, skills, or internships, provide specific details and examples. If asked about availability or work preferences, mention being open to entry-level roles and eager to contribute. Always maintain a positive and professional tone.
-Answer clearly in 2-4 sentences. Be helpful and friendly.
-
-IMPORTANT RULES:
-- Keep answers SHORT (max 3-4 lines)
-- Use bullet points when listing
-- Avoid long paragraphs
-- Be clear, simple, and professional
-- No unnecessary explanations
-- Make answers easy to scan (portfolio style)
-
-TONE:
-Friendly, confident, and concise 😊
-
-IF ASKED ABOUT PROJECTS:
-- Show only 3-4 top projects
-- Use bullet points
-- Each project = 1 line
-
-Example format:
-• Project Name - short description (tech used)
-
-IF ASKED GENERAL QUESTIONS:
-- Answer in 2-3 short sentences only
-
-Never give long paragraphs.`;
+        // Note: the AI's persona/knowledge lives server-side in app.py (PERSONA constant),
+        // sent to Groq on every /chat request. Nothing here needs to duplicate it.
 
         async function callClaude(userMsg, history) {
             const messages = history.map(m => ({ role: m.role, content: m.content }));
@@ -2358,27 +3091,6 @@ Never give long paragraphs.`;
 
         const chatHistory = [];
 
-        function addMsg(text, role) {
-            const box = document.getElementById('msgs');
-            const el = document.createElement('div');
-            el.className = 'msg ' + role;
-
-            if (role === 'ai') {
-                const formatted = text
-                    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')  // **bold**
-                    .replace(/\n\n/g, '<br><br>')                       // double newline
-                    .replace(/\n/g, '<br>')                             // single newline
-                    .replace(/(\d+)\. /g, '<br><strong>$1.</strong> ') // numbered list
-                    .replace(/^<br>/, '');                              // remove leading br
-                el.innerHTML = formatted;
-            } else {
-                el.textContent = text;                               // user message plain text rehega
-            }
-
-            box.appendChild(el);
-            box.scrollTop = box.scrollHeight;
-        }
-
         function showTyping() {
             const box = document.getElementById('msgs');
 
@@ -2391,7 +3103,7 @@ Never give long paragraphs.`;
         width:32px; height:32px; border-radius:50%;
         display:flex; align-items:center; justify-content:center;
         font-size:1rem; flex-shrink:0;
-        background:linear-gradient(135deg,#22c55e,#38bdf8);`;
+        background:linear-gradient(135deg,#22d3ee,#38bdf8);`;
             avatar.textContent = '🤖';
 
             const el = document.createElement('div');
@@ -2446,8 +3158,8 @@ Never give long paragraphs.`;
         display:flex; align-items:center; justify-content:center;
         font-size:1rem; flex-shrink:0;
         background:${role === 'user'
-                    ? 'linear-gradient(135deg,#22c55e,#4ade80)'
-                    : 'linear-gradient(135deg,#22c55e,#38bdf8)'};
+                    ? 'linear-gradient(135deg,#22d3ee,#6366f1)'
+                    : 'linear-gradient(135deg,#22d3ee,#38bdf8)'};
     `;
             avatar.textContent = role === 'user' ? '🧑' : '🤖';
 
@@ -2475,6 +3187,14 @@ Never give long paragraphs.`;
         }
     </script>
     <script>
+
+        function toggleCerts() {
+            const more = document.getElementById("moreCerts");
+            const btn = document.getElementById("certToggleBtn");
+            const isHidden = more.style.display === "none";
+            more.style.display = isHidden ? "grid" : "none";
+            btn.textContent = isHidden ? "Show Less" : "View All Certifications (11)";
+        }
 
         const themeBtn = document.getElementById("themeToggle");
 
@@ -2518,6 +3238,294 @@ Never give long paragraphs.`;
             }
         });
 
+    </script>
+
+    <!-- ===== UI/Motion layer (Phase 2): hero canvas, scroll reveal, navbar, cursor, tilt ===== -->
+    <script>
+        (function () {
+            const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            const isTouch = window.matchMedia('(hover: none), (pointer: coarse)').matches;
+
+            /* ---------- 0. Hello Intro sequence (only runs if html.show-intro was set pre-paint) ---------- */
+            const intro = document.getElementById('helloIntro');
+            if (intro && document.documentElement.classList.contains('show-intro')) {
+                const lines = intro.querySelectorAll('.intro-line');
+                const skipBtn = document.getElementById('skipIntro');
+                const progressFill = document.getElementById('introProgress');
+                document.body.classList.add('intro-lock');
+
+                const isMobile = window.innerWidth < 640;
+                const unit = isMobile ? 0.82 : 1; // desktop ~2.5s, mobile ~2.05s
+                const timers = [];
+                const t = (fn, ms) => timers.push(setTimeout(fn, ms * unit));
+
+                function endIntro() {
+                    timers.forEach(clearTimeout);
+                    intro.classList.add('intro-leaving');
+                    document.body.classList.remove('intro-lock');
+                    const cleanup = () => intro.classList.add('intro-hidden');
+                    if (reduceMotion) {
+                        cleanup();
+                    } else {
+                        intro.addEventListener('transitionend', cleanup, { once: true });
+                        // safety fallback in case transitionend doesn't fire
+                        setTimeout(cleanup, 700);
+                    }
+                }
+
+                if (reduceMotion) {
+                    // Extremely short reveal, no sequential animation, no progress/colour motion
+                    endIntro();
+                } else {
+                    const drawStart = 100;
+                    const totalDuration = 2650; // desktop total (~2.5-2.8s target); scaled by `unit` for mobile
+                    if (progressFill) {
+                        progressFill.style.transitionDuration = ((totalDuration - drawStart) * unit) + 'ms';
+                        t(() => { progressFill.style.width = '100%'; }, drawStart);
+                    }
+                    t(() => lines[0].classList.add('show'), drawStart);          // Hello draws in (~0.9s)
+                    t(() => lines[0].classList.add('hello-exit'), 1350);         // holds + colour-evolves, then fades
+                    t(() => lines[1].classList.add('show'), 1500);               // "I'm Mo Ariz." soft reveal
+                    t(() => endIntro(), totalDuration);
+                }
+
+                if (skipBtn) {
+                    skipBtn.addEventListener('click', endIntro);
+                }
+            } else if (intro) {
+                intro.classList.add('intro-hidden');
+            }
+
+            /* ---------- 1. Hero canvas: connected data-node network ---------- */
+            const canvas = document.getElementById('heroCanvas');
+            if (canvas && !reduceMotion) {
+                const ctx = canvas.getContext('2d');
+                const hero = document.getElementById('hero');
+                let w, h, nodes, raf;
+                let mouse = { x: null, y: null };
+
+                function density() {
+                    if (window.innerWidth < 640) return 26;
+                    if (window.innerWidth < 1024) return 42;
+                    return 64;
+                }
+
+                function resize() {
+                    w = canvas.width = hero.offsetWidth;
+                    h = canvas.height = hero.offsetHeight;
+                    const count = density();
+                    nodes = Array.from({ length: count }, () => ({
+                        x: Math.random() * w,
+                        y: Math.random() * h,
+                        vx: (Math.random() - 0.5) * 0.18,
+                        vy: (Math.random() - 0.5) * 0.18
+                    }));
+                }
+
+                function getAccent() {
+                    const s = getComputedStyle(document.documentElement);
+                    return [s.getPropertyValue('--accent').trim(), s.getPropertyValue('--accent2').trim()];
+                }
+
+                function draw() {
+                    ctx.clearRect(0, 0, w, h);
+                    const [c1] = getAccent();
+                    for (const n of nodes) {
+                        n.x += n.vx; n.y += n.vy;
+                        if (n.x < 0 || n.x > w) n.vx *= -1;
+                        if (n.y < 0 || n.y > h) n.vy *= -1;
+
+                        if (mouse.x !== null) {
+                            const dx = n.x - mouse.x, dy = n.y - mouse.y;
+                            const dist = Math.sqrt(dx * dx + dy * dy);
+                            if (dist < 120) {
+                                n.x += dx / dist * 0.25;
+                                n.y += dy / dist * 0.25;
+                            }
+                        }
+                    }
+                    ctx.strokeStyle = c1 || '#22d3ee';
+                    for (let i = 0; i < nodes.length; i++) {
+                        for (let j = i + 1; j < nodes.length; j++) {
+                            const dx = nodes[i].x - nodes[j].x, dy = nodes[i].y - nodes[j].y;
+                            const dist = Math.sqrt(dx * dx + dy * dy);
+                            if (dist < 130) {
+                                ctx.globalAlpha = (1 - dist / 130) * 0.35;
+                                ctx.beginPath();
+                                ctx.moveTo(nodes[i].x, nodes[i].y);
+                                ctx.lineTo(nodes[j].x, nodes[j].y);
+                                ctx.stroke();
+                            }
+                        }
+                    }
+                    ctx.globalAlpha = 0.8;
+                    ctx.fillStyle = c1 || '#22d3ee';
+                    for (const n of nodes) {
+                        ctx.beginPath();
+                        ctx.arc(n.x, n.y, 1.6, 0, Math.PI * 2);
+                        ctx.fill();
+                    }
+                    ctx.globalAlpha = 1;
+                    raf = requestAnimationFrame(draw);
+                }
+
+                resize();
+                draw();
+                window.addEventListener('resize', resize);
+                if (!isTouch) {
+                    hero.addEventListener('mousemove', (e) => {
+                        const rect = hero.getBoundingClientRect();
+                        mouse.x = e.clientX - rect.left;
+                        mouse.y = e.clientY - rect.top;
+                    });
+                    hero.addEventListener('mouseleave', () => { mouse.x = null; mouse.y = null; });
+                }
+            }
+
+            /* ---------- 2. Magnetic buttons (desktop only) ---------- */
+            if (!isTouch && !reduceMotion) {
+                document.querySelectorAll('[data-magnetic]').forEach(btn => {
+                    btn.addEventListener('mousemove', (e) => {
+                        const r = btn.getBoundingClientRect();
+                        const x = e.clientX - r.left - r.width / 2;
+                        const y = e.clientY - r.top - r.height / 2;
+                        btn.style.transform = `translate(${x * 0.15}px, ${y * 0.25}px)`;
+                    });
+                    btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
+                });
+            }
+
+            /* ---------- 3. Scroll-reveal for sections/cards ---------- */
+            const revealTargets = document.querySelectorAll(
+                '#about, #education .edu-card, #skills, #internships .intern-card, ' +
+                '#projects .project-card, #certificates .cert-card, #contact .contact-card, ' +
+                '.proj-subhead, #chat-section'
+            );
+            revealTargets.forEach(el => el.classList.add('reveal'));
+
+            if ('IntersectionObserver' in window) {
+                const io = new IntersectionObserver((entries) => {
+                    entries.forEach((entry, i) => {
+                        if (entry.isIntersecting) {
+                            entry.target.style.transitionDelay = (Math.min(i % 6, 5) * 0.06) + 's';
+                            entry.target.classList.add('reveal-in');
+                            io.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+                revealTargets.forEach(el => io.observe(el));
+            } else {
+                revealTargets.forEach(el => el.classList.add('reveal-in'));
+            }
+
+            /* ---------- 4. Navbar: glass-on-scroll + active link ---------- */
+            const nav = document.querySelector('nav');
+            const onScroll = () => {
+                nav.classList.toggle('nav-scrolled', window.scrollY > 40);
+            };
+            window.addEventListener('scroll', onScroll, { passive: true });
+            onScroll();
+
+            const navLinks = document.querySelectorAll('nav ul li a[href^="#"]');
+            const sections = Array.from(navLinks)
+                .map(a => document.querySelector(a.getAttribute('href')))
+                .filter(Boolean);
+            if ('IntersectionObserver' in window && sections.length) {
+                const navIo = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            navLinks.forEach(l => l.classList.remove('active-link'));
+                            const match = document.querySelector(`nav ul li a[href="#${entry.target.id}"]`);
+                            if (match) match.classList.add('active-link');
+                        }
+                    });
+                }, { rootMargin: '-45% 0px -50% 0px' });
+                sections.forEach(s => navIo.observe(s));
+            }
+
+            /* ---------- 5. Scroll progress bar ---------- */
+            const bar = document.createElement('div');
+            bar.id = 'scrollProgress';
+            document.body.appendChild(bar);
+            window.addEventListener('scroll', () => {
+                const h = document.documentElement;
+                const pct = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
+                bar.style.width = pct + '%';
+            }, { passive: true });
+
+            /* ---------- 6. Subtle 3D tilt on project cards (desktop only) ---------- */
+            if (!isTouch && !reduceMotion) {
+                document.querySelectorAll('.project-card').forEach(card => {
+                    card.addEventListener('mousemove', (e) => {
+                        const r = card.getBoundingClientRect();
+                        const px = (e.clientX - r.left) / r.width - 0.5;
+                        const py = (e.clientY - r.top) / r.height - 0.5;
+                        card.style.transform = `translateY(-4px) rotateX(${py * -3}deg) rotateY(${px * 3}deg)`;
+                    });
+                    card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+                });
+            }
+
+            /* ---------- 7. Custom cursor (desktop only) ---------- */
+            if (!isTouch && !reduceMotion && window.innerWidth > 900) {
+                const dot = document.createElement('div');
+                dot.id = 'cursorDot';
+                document.body.appendChild(dot);
+                let cx = 0, cy = 0, dx = 0, dy = 0;
+                window.addEventListener('mousemove', (e) => { cx = e.clientX; cy = e.clientY; dot.style.opacity = 1; });
+                document.addEventListener('mouseleave', () => { dot.style.opacity = 0; });
+                (function loop() {
+                    dx += (cx - dx) * 0.2; dy += (cy - dy) * 0.2;
+                    dot.style.transform = `translate(${dx}px, ${dy}px)`;
+                    requestAnimationFrame(loop);
+                })();
+                document.querySelectorAll('a, button, .project-card, .cert-card, .skill-tag').forEach(el => {
+                    el.addEventListener('mouseenter', () => dot.classList.add('cursor-grow'));
+                    el.addEventListener('mouseleave', () => dot.classList.remove('cursor-grow'));
+                });
+            }
+
+            /* ---------- 8. AI assistant "activation" pulse when section enters view ---------- */
+            const chatOrb = document.querySelector('#chat-section .chat-avatar, #chat-section .bot-avatar, #chat-section');
+            if (chatOrb && 'IntersectionObserver' in window) {
+                const chatIo = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            document.getElementById('chat-section')?.classList.add('ai-activated');
+                        }
+                    });
+                }, { threshold: 0.3 });
+                chatIo.observe(document.getElementById('chat-section'));
+            }
+            /* ---------- 9. Skills ecosystem filter ---------- */
+            const skillNodes = document.querySelectorAll('.skill-node');
+            const skillGroups = document.querySelectorAll('.skill-group');
+            skillNodes.forEach(node => {
+                node.addEventListener('click', () => {
+                    skillNodes.forEach(n => n.classList.remove('active'));
+                    node.classList.add('active');
+                    const cat = node.dataset.cat;
+                    skillGroups.forEach(g => {
+                        g.classList.toggle('dimmed', cat !== 'all' && g.dataset.cat !== cat);
+                    });
+                });
+            });
+            /* ---------- 10. Experience timeline line draw ---------- */
+            const timelineEl = document.querySelector('#internships .timeline');
+            if (timelineEl && 'IntersectionObserver' in window) {
+                const tlIo = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            timelineEl.classList.add('line-in');
+                            tlIo.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.25 });
+                tlIo.observe(timelineEl);
+            } else if (timelineEl) {
+                timelineEl.classList.add('line-in');
+            }
+        })();
     </script>
 </body>
 

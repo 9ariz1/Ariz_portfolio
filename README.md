@@ -201,7 +201,7 @@ This project is deployed on **Render Free Tier**:
 
 | Platform | Link |
 |----------|------|
-| 📧 Email | mohammadariz98765@gmail.com |
+| 📧 Email | arizsheikh818@gmail.com |
 | 📱 Phone | +91 93051 78391 |
 | 💼 LinkedIn | [linkedin.com/in/mo-ariz](https://www.linkedin.com/in/mo-ariz/) |
 | 🐙 GitHub | [github.com/9ariz1](https://github.com/9ariz1) |
@@ -212,9 +212,9 @@ This project is deployed on **Render Free Tier**:
 ## ⚠️ Important Notes
 
 - Never push API key to GitHub
-- Use environment variables for production
+- Use environment variables for both local development and production
 - `.env` file is listed in `.gitignore`
-- For local development, hardcode key in `app.py` only
+- Never hardcode the API key directly in `app.py` or any other tracked file
 
 ---
 
