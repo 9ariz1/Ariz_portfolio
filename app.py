@@ -14,6 +14,8 @@ app.config["MAX_CONTENT_LENGTH"] = 32 * 1024  # reject oversized request bodies
 CORS(app)
 
 GROQ_API_KEY = os.getenv("GROQ_API_KEY", "")
+GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
+GROQ_MODEL = "openai/gpt-oss-20b"
 
 # ---- Chat limits ----------------------------------------------------------
 MAX_MESSAGE_CHARS = 500      # per user message
