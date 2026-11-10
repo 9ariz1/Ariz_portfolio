@@ -113,27 +113,36 @@
         </div>
     </div>
 
-    <nav>
-        <div class="logo">MA</div>
+    <!-- Navigation section start -->
 
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light theme">
-            <i class="fa-solid fa-moon"></i>
-        </button>
 
-        <ul>
-            <li><a href="#about">About</a></li>
-            <li><a href="#education">Education</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#internships">Experience</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <!-- <li><a href="#blog">Blog</a></li> -->
-            <li><a href="#resume">Resume</a></li>
-            <!-- <li><a href="static/Mo_Ariz_CV(Ds&ml).pdf" target="_blank" rel="noopener noreferrer">CV</a></li> -->
-            <li><a href="#certificates">Achievements</a></li>
-            <li><a href="#chat-section">AI Assistant</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
+    <header class="site-header">
+        <div class="nav-top">
+            <div class="logo">MA</div>
+
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light theme">
+                <i class="fa-solid fa-moon"></i>
+            </button>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#internships">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#resume">Resume</a></li>
+                <li><a href="#certificates">Achievements</a></li>
+                <li><a href="#chat-section">AI Assistant</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <!-- Navigation section end -->
+
     <!-- Hero Section -->
     <section id="hero">
         <canvas id="heroCanvas" aria-hidden="true"></canvas>
@@ -151,8 +160,8 @@
                 <button class="btn btn-primary" data-magnetic
                     onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">View My
                     Work</button>
-                <a href="static/ArizDatascience (1).pdf" download="ArizDatascience (1).pdf" class="btn btn-outline" data-magnetic><i
-                        class="fa-solid fa-download"></i> Download Resume</a>
+                <a href="static/ArizDatascience (1).pdf" download="ArizDatascience (1).pdf" class="btn btn-outline"
+                    data-magnetic><i class="fa-solid fa-download"></i> Download Resume</a>
                 <button class="btn btn-outline" data-magnetic
                     onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contact
                     Me</button>
@@ -846,38 +855,41 @@
                             </div>
                         </div>
                     </div>
-                    <div class="chat-status chat-header-badge">
-                        <span class="status-dot"></span>Online & Ready
+                    <div class="chat-header-right">
+                        <div class="chat-status chat-header-badge">
+                            <span class="status-dot"></span>Online & Ready
+                        </div>
+                        <button type="button" class="chat-clear" id="chatClear" aria-label="Clear chat"
+                            title="Clear chat" hidden><i
+                                class="fa-solid fa-rotate-right"></i><span>Clear</span></button>
                     </div>
                 </div>
 
                 <!-- Messages -->
-                <div class="chat-messages" id="msgs">
-                    <div class="msg ai">👋 Hey! I'm Mo Ariz's AI assistant. Ask me anything about his data science
-                        skills,
-                        projects, internships, or experience — I've got all the details!</div>
+                <div class="chat-messages" id="msgs" role="log" aria-live="polite" aria-label="Chat conversation">
+                    <div class="chat-welcome" id="chatWelcome">
+                        <div class="cw-orb">🤖</div>
+                        <h3>Hi, I'm Ariz's AI assistant</h3>
+                        <p>Ask about my projects, skills, internships, or how I could fit your team. I answer only from
+                            Ariz's verified profile.</p>
+                        <div class="cw-grid" id="cwGrid"></div>
+                    </div>
                 </div>
 
-                <!-- Quick Prompts -->
-                <div class="quick-prompts">
-                    <div class="qp-label">💡 Quick questions</div>
-                    <button class="qp" onclick="sendQuick('What can you build?')">🧠 What can you build?</button>
-                    <button class="qp" onclick="sendQuick('Show me your strongest projects')">🛠️ Strongest
-                        projects</button>
-                    <button class="qp" onclick="sendQuick('What are your core skills?')">⚡ Core skills</button>
-                    <button class="qp" onclick="sendQuick('Tell me about your experience')">💼 Experience</button>
-                    <button class="qp" onclick="sendQuick('Why should I interview you?')">🌟 Why interview
-                        you?</button>
-                    <button class="qp" onclick="sendQuick('Are you open to opportunities?')">🟢 Open to
-                        opportunities?</button>
-                </div>
+                <!-- Follow-up chips (shown once the conversation starts) -->
+                <div class="quick-prompts" id="chatChips" hidden></div>
 
                 <!-- Input -->
                 <div class="chat-input-row">
-                    <input id="chat-in" type="text" placeholder="Ask something about Mo..."
-                        onkeydown="if(event.key==='Enter')sendMsg()">
-                    <button class="send-btn" onclick="sendMsg()" aria-label="Send message">➤</button>
+                    <div class="chat-input-wrap">
+                        <textarea id="chat-in" rows="1" maxlength="500" placeholder="Ask something about Ariz..."
+                            aria-label="Type your question"></textarea>
+                        <span class="chat-count" id="chatCount" aria-hidden="true"></span>
+                    </div>
+                    <button type="button" class="send-btn" id="chatSend" aria-label="Send message" disabled>➤</button>
                 </div>
+                <div class="chat-note">AI-generated from Ariz's portfolio. For details not listed here, please contact Ariz
+                    directly.</div>
 
             </div>
         </div>
@@ -948,12 +960,13 @@
             <div class="section-label">Interests</div>
             <h3 style="font-size:1.1rem;font-weight:600;margin-bottom:0.5rem">Beyond the code</h3>
             <div class="interests">
-                <span class="interest-tag">📷 Photography & Editing</span>
-                <span class="interest-tag">🧩 Quiz Solving</span>
-                <span class="interest-tag">📖 Reading</span>
-                <span class="interest-tag">🏏 Cricket</span>
-                <span class="interest-tag">✈️ Traveling & Exploring</span>
-                <span class="interest-tag">🍳 Cooking</span>
+                <span class="interest-tag">🤖 AI Exploration & Innovation</span>
+                <span class="interest-tag">📊 Data-Driven Storytelling</span>
+                <span class="interest-tag">🧠 Logical Thinking & Problem Solving</span>
+                <span class="interest-tag">🎨 Creative Design & UI Exploration</span>
+                <span class="interest-tag">✍️ Writing & Idea Sharing</span>
+                <span class="interest-tag">🎧 Music & Creative Inspiration</span>
+                <span class="interest-tag">♟️ Chess & Strategic Thinking</span>
             </div>
         </div>
     </section>
@@ -962,116 +975,291 @@
 
     <script>
         // Note: the AI's persona/knowledge lives server-side in app.py (PERSONA constant),
-        // sent to Groq on every /chat request. Nothing here needs to duplicate it.
+        // sent to Groq on every /chat request. Nothing here duplicates it.
+        (function () {
+            const msgsEl = document.getElementById('msgs');
+            const inEl = document.getElementById('chat-in');
+            const sendBtn = document.getElementById('chatSend');
+            const clearBtn = document.getElementById('chatClear');
+            const welcome = document.getElementById('chatWelcome');
+            const grid = document.getElementById('cwGrid');
+            const chips = document.getElementById('chatChips');
+            const countEl = document.getElementById('chatCount');
+            if (!msgsEl || !inEl) return;
 
-        async function callClaude(userMsg, history) {
-            const messages = history.map(m => ({ role: m.role, content: m.content }));
-            messages.push({ role: 'user', content: userMsg });
-            const res = await fetch('/chat', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ messages })
+            const MAX_LEN = 500;
+            const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            const SUGGESTIONS = [
+                { icon: '👋', label: 'Tell me about yourself', q: 'Tell me about yourself' },
+                { icon: '🛠️', label: 'Strongest projects', q: 'Explain your strongest projects' },
+                { icon: '⚡', label: 'Technical skills', q: 'What are your technical skills?' },
+                { icon: '💼', label: 'Internships', q: 'Tell me about your internships' },
+                { icon: '🎯', label: 'Suitable roles', q: 'What roles are you suitable for?' },
+                { icon: '🌟', label: 'Why consider you?', q: 'Why should we consider you?' },
+                { icon: '📄', label: 'Resume, GitHub & LinkedIn', q: 'Can I access your resume, GitHub, or LinkedIn?' }
+            ];
+            const THINKING = ['Thinking…', 'Reading Mo Ariz portfolio…', 'Putting it together…'];
+
+            let history = [];
+            let busy = false;
+            let lastQuestion = '';
+            let typingTimer = null;
+
+            /* ---------- Safe rendering (escape first, then limited markdown) ---------- */
+            function esc(s) {
+                return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+                    .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+            }
+            function inline(s) {
+                s = esc(s);
+                s = s.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,
+                    '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
+                s = s.replace(/(^|[\s(>])(https?:\/\/[^\s<)]+[^\s<).,;:!?])/g,
+                    '$1<a href="$2" target="_blank" rel="noopener noreferrer">$2</a>');
+                s = s.replace(/(^|[\s(>])([A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,})/g,
+                    '$1<a href="mailto:$2">$2</a>');
+                s = s.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+                s = s.replace(/`([^`]+)`/g, '<code>$1</code>');
+                return s;
+            }
+            function render(text) {
+                const lines = text.replace(/\r/g, '').split('\n');
+                let html = '', list = null, para = [];
+                const flushPara = () => { if (para.length) { html += '<p>' + para.join('<br>') + '</p>'; para = []; } };
+                const closeList = () => { if (list) { html += '</' + list + '>'; list = null; } };
+                lines.forEach(line => {
+                    const ul = line.match(/^\s*[-*•]\s+(.*)/);
+                    const ol = line.match(/^\s*\d+[.)]\s+(.*)/);
+                    if (ul || ol) {
+                        flushPara();
+                        const tag = ul ? 'ul' : 'ol';
+                        if (list !== tag) { closeList(); html += '<' + tag + '>'; list = tag; }
+                        html += '<li>' + inline((ul || ol)[1]) + '</li>';
+                    } else if (!line.trim()) {
+                        flushPara(); closeList();
+                    } else {
+                        closeList();
+                        para.push(inline(line.replace(/^#{1,6}\s+/, '')));
+                    }
+                });
+                flushPara(); closeList();
+                return html;
+            }
+
+            /* ---------- DOM helpers ---------- */
+            function nearBottom() {
+                return msgsEl.scrollHeight - msgsEl.scrollTop - msgsEl.clientHeight < 80;
+            }
+            function scrollDown(force) {
+                if (force || nearBottom()) msgsEl.scrollTo({ top: msgsEl.scrollHeight, behavior: reduceMotion ? 'auto' : 'smooth' });
+            }
+            function makeRow(role) {
+                const row = document.createElement('div');
+                row.className = 'chat-row ' + role;
+                const av = document.createElement('div');
+                av.className = 'chat-av ' + role;
+                av.textContent = role === 'user' ? '🧑' : '🤖';
+                av.setAttribute('aria-hidden', 'true');
+                const bubble = document.createElement('div');
+                bubble.className = 'msg ' + role;
+                row.appendChild(av);
+                row.appendChild(bubble);
+                msgsEl.appendChild(row);
+                return { row, bubble };
+            }
+            function showChat() {
+                if (welcome && welcome.parentNode) welcome.remove();
+                chips.hidden = false;
+                clearBtn.hidden = false;
+            }
+            function addUser(text) {
+                showChat();
+                const { bubble } = makeRow('user');
+                bubble.textContent = text;
+                scrollDown(true);
+            }
+
+            /* ---------- Thinking indicator ---------- */
+            function showThinking() {
+                const { row, bubble } = makeRow('ai');
+                row.id = 'thinkingRow';
+                bubble.classList.add('thinking');
+                bubble.innerHTML = '<span class="think-dots"><i></i><i></i><i></i></span><span class="think-label">' + THINKING[0] + '</span>';
+                let i = 0;
+                row._t = setInterval(() => {
+                    i = (i + 1) % THINKING.length;
+                    const l = bubble.querySelector('.think-label');
+                    if (l) l.textContent = THINKING[i];
+                }, 1800);
+                scrollDown(true);
+            }
+            function hideThinking() {
+                const r = document.getElementById('thinkingRow');
+                if (r) { clearInterval(r._t); r.remove(); }
+            }
+
+            /* ---------- Typing animation (word by word, always well-formed markdown) ---------- */
+            function typeReply(text, done) {
+                const { bubble } = makeRow('ai');
+                if (reduceMotion) { bubble.innerHTML = render(text); scrollDown(true); done(); return; }
+                const tokens = text.match(/\[[^\]]+\]\([^)]+\)\S*\s*|\*\*[^*]+\*\*\S*\s*|\S+\s*/g) || [text];
+                const delay = Math.max(14, Math.min(34, 2600 / tokens.length));
+                let i = 0;
+                bubble.classList.add('is-typing');
+                (function step() {
+                    i++;
+                    bubble.innerHTML = render(tokens.slice(0, i).join(''));
+                    scrollDown(false);
+                    if (i < tokens.length) {
+                        typingTimer = setTimeout(step, delay);
+                    } else {
+                        bubble.classList.remove('is-typing');
+                        typingTimer = null;
+                        scrollDown(false);
+                        done();
+                    }
+                })();
+            }
+            function finishTypingNow() {
+                if (typingTimer) { clearTimeout(typingTimer); typingTimer = null; }
+            }
+
+            /* ---------- Error bubble with retry ---------- */
+            function addError(text, canRetry) {
+                const { bubble } = makeRow('ai');
+                bubble.classList.add('error');
+                bubble.textContent = text;
+                if (canRetry) {
+                    const b = document.createElement('button');
+                    b.type = 'button';
+                    b.className = 'retry-btn';
+                    b.textContent = 'Try again';
+                    b.addEventListener('click', () => {
+                        bubble.closest('.chat-row').remove();
+                        request(lastQuestion, true);
+                    });
+                    bubble.appendChild(document.createElement('br'));
+                    bubble.appendChild(b);
+                }
+                scrollDown(true);
+            }
+
+            /* ---------- Networking ---------- */
+            async function callApi(messages) {
+                const ctrl = new AbortController();
+                const timer = setTimeout(() => ctrl.abort(), 35000);
+                try {
+                    const res = await fetch('/chat', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ messages }),
+                        signal: ctrl.signal
+                    });
+                    let data = {};
+                    try { data = await res.json(); } catch (e) { /* non-JSON response */ }
+                    if (!res.ok) {
+                        const err = new Error(data.reply || 'Request failed');
+                        err.status = res.status;
+                        throw err;
+                    }
+                    return data.reply || 'Something went wrong, try again!';
+                } finally {
+                    clearTimeout(timer);
+                }
+            }
+
+            function setBusy(v) {
+                busy = v;
+                inEl.setAttribute('aria-busy', v ? 'true' : 'false');
+                updateSend();
+            }
+
+            async function request(text, isRetry) {
+                if (busy) return;
+                lastQuestion = text;
+                setBusy(true);
+                showThinking();
+                try {
+                    const reply = await callApi(history.concat([{ role: 'user', content: text }]).slice(-10));
+                    hideThinking();
+                    history.push({ role: 'user', content: text });
+                    history.push({ role: 'assistant', content: reply });
+                    typeReply(reply, () => { setBusy(false); inEl.focus({ preventScroll: true }); });
+                } catch (e) {
+                    hideThinking();
+                    let msg = 'Couldn’t reach the AI right now.';
+                    if (e.name === 'AbortError') msg = 'That took too long.';
+                    else if (e.status === 429) msg = e.message;
+                    else if (e.status === 400) msg = e.message;
+                    else if (e.message && e.status) msg = e.message;
+                    addError(msg, e.status !== 400);
+                    setBusy(false);
+                }
+            }
+
+            /* ---------- Sending ---------- */
+            function sendText(text) {
+                text = (text || '').trim();
+                if (!text || busy) return;
+                if (text.length > MAX_LEN) text = text.slice(0, MAX_LEN);
+                inEl.value = '';
+                autoGrow();
+                addUser(text);
+                request(text, false);
+            }
+            window.sendMsg = function () { sendText(inEl.value); };
+            window.sendQuick = function (q) { sendText(q); };
+
+            /* ---------- Input behaviour ---------- */
+            function updateSend() {
+                sendBtn.disabled = busy || !inEl.value.trim();
+            }
+            function autoGrow() {
+                inEl.style.height = 'auto';
+                inEl.style.height = Math.min(inEl.scrollHeight, 120) + 'px';
+                const n = inEl.value.length;
+                countEl.textContent = n > MAX_LEN - 100 ? (MAX_LEN - n) : '';
+                updateSend();
+            }
+            inEl.addEventListener('input', autoGrow);
+            inEl.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' && !e.shiftKey && !e.isComposing) {
+                    e.preventDefault();
+                    sendText(inEl.value);
+                }
             });
-            const data = await res.json();
-            return data.reply || "Something went wrong, try again!";
-        }
+            sendBtn.addEventListener('click', () => sendText(inEl.value));
 
-        const chatHistory = [];
-
-        function showTyping() {
-            const box = document.getElementById('msgs');
-
-            const wrapper = document.createElement('div');
-            wrapper.style.cssText = 'display:flex; align-items:flex-start; gap:8px;';
-            wrapper.id = 'typing-wrapper';
-
-            const avatar = document.createElement('div');
-            avatar.style.cssText = `
-        width:32px; height:32px; border-radius:50%;
-        display:flex; align-items:center; justify-content:center;
-        font-size:1rem; flex-shrink:0;
-        background:linear-gradient(135deg,#22d3ee,#38bdf8);`;
-            avatar.textContent = '🤖';
-
-            const el = document.createElement('div');
-            el.className = 'msg ai typing';
-            el.innerHTML = '<div class="dot"></div><div class="dot"></div><div class="dot"></div>';
-
-            wrapper.appendChild(avatar);
-            wrapper.appendChild(el);
-            box.appendChild(wrapper);
-            box.scrollTop = box.scrollHeight;
-        }
-
-        function removeTyping() {
-            const t = document.getElementById('typing-wrapper');
-            if (t) t.remove();
-        }
-
-        async function sendMsg() {
-            const inp = document.getElementById('chat-in');
-            const text = inp.value.trim();
-            if (!text) return;
-            inp.value = '';
-            addMsg(text, 'user');
-            chatHistory.push({ role: 'user', content: text });
-            showTyping();
-            try {
-                const reply = await callClaude(text, chatHistory.slice(0, -1));
-                removeTyping();
-                addMsg(reply, 'ai');
-                chatHistory.push({ role: 'assistant', content: reply });
-            } catch (e) {
-                removeTyping();
-                addMsg("Couldn't reach the AI right now, try again!", 'ai');
+            /* ---------- Suggestions ---------- */
+            function suggestionButton(s, cls) {
+                const b = document.createElement('button');
+                b.type = 'button';
+                b.className = cls;
+                b.innerHTML = '<span class="s-ico" aria-hidden="true">' + s.icon + '</span><span>' + esc(s.label) + '</span>';
+                b.addEventListener('click', () => sendText(s.q));
+                return b;
             }
-        }
+            SUGGESTIONS.forEach(s => grid.appendChild(suggestionButton(s, 'cw-card')));
+            SUGGESTIONS.forEach(s => chips.appendChild(suggestionButton(s, 'qp')));
 
-        function sendQuick(q) {
-            document.getElementById('chat-in').value = q;
-            sendMsg();
-        }
+            /* ---------- Clear chat ---------- */
+            clearBtn.addEventListener('click', () => {
+                finishTypingNow();
+                hideThinking();
+                history = [];
+                lastQuestion = '';
+                setBusy(false);
+                msgsEl.innerHTML = '';
+                msgsEl.appendChild(welcome);
+                chips.hidden = true;
+                clearBtn.hidden = true;
+                inEl.value = '';
+                autoGrow();
+                msgsEl.scrollTop = 0;
+            });
 
-        function addMsg(text, role) {
-            const box = document.getElementById('msgs');
-
-            const wrapper = document.createElement('div');
-            wrapper.style.cssText = `display:flex; align-items:flex-start; gap:8px; ${role === 'user' ? 'flex-direction:row-reverse;' : ''}`;
-
-            // Avatar
-            const avatar = document.createElement('div');
-            avatar.style.cssText = `
-        width:32px; height:32px; border-radius:50%;
-        display:flex; align-items:center; justify-content:center;
-        font-size:1rem; flex-shrink:0;
-        background:${role === 'user'
-                    ? 'linear-gradient(135deg,#22d3ee,#6366f1)'
-                    : 'linear-gradient(135deg,#22d3ee,#38bdf8)'};
-    `;
-            avatar.textContent = role === 'user' ? '🧑' : '🤖';
-
-            // Message bubble
-            const el = document.createElement('div');
-            el.className = 'msg ' + role;
-
-            if (role === 'ai') {
-                const formatted = text
-                    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                    .replace(/\*\*/g, '')
-                    .replace(/\n\n/g, '<br>')
-                    .replace(/\n/g, '<br>')
-                    .replace(/(\d+)\. /g, '<br>$1. ')
-                    .replace(/^<br>/, '');
-                el.innerHTML = formatted;
-            } else {
-                el.textContent = text;
-            }
-
-            wrapper.appendChild(avatar);
-            wrapper.appendChild(el);
-            box.appendChild(wrapper);
-            box.scrollTop = box.scrollHeight;
-        }
+            autoGrow();
+        })();
     </script>
     <script>
 
@@ -1183,91 +1371,287 @@
                 intro.classList.add('intro-hidden');
             }
 
-            /* ---------- 1. Hero canvas: connected data-node network ---------- */
+
+
+
+
+
+            /* ---------- 1. Hero canvas: full-width flowing neural network (left -> right) ---------- */
             const canvas = document.getElementById('heroCanvas');
-            if (canvas && !reduceMotion) {
+
+            if (canvas) {
                 const ctx = canvas.getContext('2d');
                 const hero = document.getElementById('hero');
-                let w, h, nodes, raf;
-                let mouse = { x: null, y: null };
 
-                function density() {
-                    if (window.innerWidth < 640) return 26;
-                    if (window.innerWidth < 1024) return 42;
-                    return 64;
+                const TAU = Math.PI * 2;
+                const MARGIN = 90;               // off-screen buffer on both sides
+                let w = 0, h = 0, dpr = 1, span = 0;
+                let nodes = [], links = [];
+                let builtFor = '';
+                let running = false, visible = true, rafId = 0;
+                let lastTs = 0, flow = 0;        // flow = distance travelled (px)
+                let wave = { a1: 0, a2: 0, k1: 0, k2: 0 };
+                let cyPx = 0;                    // vertical centre of the network band
+
+                /* Pre-rendered glow sprites (much cheaper than shadowBlur) */
+                function makeGlow(size, stops) {
+                    const c = document.createElement('canvas');
+                    c.width = c.height = size;
+                    const g = c.getContext('2d');
+                    const grad = g.createRadialGradient(size / 2, size / 2, 0, size / 2, size / 2, size / 2);
+                    stops.forEach(s => grad.addColorStop(s[0], s[1]));
+                    g.fillStyle = grad;
+                    g.fillRect(0, 0, size, size);
+                    return c;
+                }
+                const glowBig = makeGlow(64, [[0, 'rgba(255,225,160,1)'], [0.12, 'rgba(255,170,60,0.85)'], [0.32, 'rgba(255,125,20,0.38)'], [0.65, 'rgba(255,105,10,0.1)'], [1, 'rgba(255,100,0,0)']]);
+                const glowSmall = makeGlow(32, [[0, 'rgba(255,185,90,1)'], [0.25, 'rgba(255,130,30,0.6)'], [1, 'rgba(255,100,0,0)']]);
+
+                /* Deterministic-ish random helpers */
+                const rnd = (a, b) => a + Math.random() * (b - a);
+
+                function scale() {
+                    // vertical size of the network band
+                    return Math.max(70, Math.min(h * 0.15, w < 640 ? 105 : 150));
                 }
 
-                function resize() {
-                    w = canvas.width = hero.offsetWidth;
-                    h = canvas.height = hero.offsetHeight;
-                    const count = density();
-                    nodes = Array.from({ length: count }, () => ({
-                        x: Math.random() * w,
-                        y: Math.random() * h,
-                        vx: (Math.random() - 0.5) * 0.18,
-                        vy: (Math.random() - 0.5) * 0.18
-                    }));
+                function measureCenter() {
+                    // Fixed background position (independent of hero content):
+                    // the band sits around the middle of the first screen, like the reference.
+                    const top = hero.getBoundingClientRect().top + (window.pageYOffset || 0);
+                    const view = Math.min(window.innerHeight || h, h);
+                    cyPx = view * 0.5 - top;
+                    cyPx = Math.max(scale() * 1.6, Math.min(cyPx, h - scale() * 1.6));
                 }
 
-                function getAccent() {
-                    const s = getComputedStyle(document.documentElement);
-                    return [s.getPropertyValue('--accent').trim(), s.getPropertyValue('--accent2').trim()];
-                }
+                function build() {
+                    const mobile = w < 640;
+                    const tablet = w < 1024;
+                    span = w + MARGIN * 2;
 
-                function draw() {
-                    ctx.clearRect(0, 0, w, h);
-                    const [c1] = getAccent();
-                    for (const n of nodes) {
-                        n.x += n.vx; n.y += n.vy;
-                        if (n.x < 0 || n.x > w) n.vx *= -1;
-                        if (n.y < 0 || n.y > h) n.vy *= -1;
+                    // Periodic wave (so the loop wraps seamlessly)
+                    const wl = Math.max(mobile ? 380 : 520, w * 0.55);
+                    const n1 = Math.max(1, Math.round(span / wl));
+                    const n2 = Math.max(2, Math.round(span / (wl * 0.5)));
+                    wave.k1 = TAU * n1 / span;
+                    wave.k2 = TAU * n2 / span;
 
-                        if (mouse.x !== null) {
-                            const dx = n.x - mouse.x, dy = n.y - mouse.y;
-                            const dist = Math.sqrt(dx * dx + dy * dy);
-                            if (dist < 120) {
-                                n.x += dx / dist * 0.25;
-                                n.y += dy / dist * 0.25;
-                            }
-                        }
+                    const count = Math.round(span / (mobile ? 19 : tablet ? 24 : 27));
+                    nodes = [];
+                    for (let i = 0; i < count; i++) {
+                        const r = Math.random();
+                        const tri = Math.random() + Math.random() - 1;      // -1..1, centre-weighted
+                        nodes.push({
+                            s: (i + rnd(0.2, 0.8)) / count * span,           // position along the flowing pattern
+                            lane: tri,
+                            phase: rnd(0, TAU),
+                            speed: rnd(0.5, 1.2),
+                            type: r < 0.22 ? 0 : r < 0.80 ? 1 : 2            // 0 dust, 1 node, 2 bright node
+                        });
                     }
-                    ctx.strokeStyle = c1 || '#22d3ee';
+                    nodes.sort((a, b) => a.s - b.s);
+
+                    // Static links between neighbours in flow order (looks like a mesh)
+                    links = [];
                     for (let i = 0; i < nodes.length; i++) {
-                        for (let j = i + 1; j < nodes.length; j++) {
-                            const dx = nodes[i].x - nodes[j].x, dy = nodes[i].y - nodes[j].y;
-                            const dist = Math.sqrt(dx * dx + dy * dy);
-                            if (dist < 130) {
-                                ctx.globalAlpha = (1 - dist / 130) * 0.35;
-                                ctx.beginPath();
-                                ctx.moveTo(nodes[i].x, nodes[i].y);
-                                ctx.lineTo(nodes[j].x, nodes[j].y);
-                                ctx.stroke();
-                            }
+                        if (nodes[i].type === 0) continue;
+                        for (let step = 1; step <= 4; step++) {
+                            const j = (i + step) % nodes.length;
+                            if (nodes[j].type === 0) continue;
+                            if (step === 1 || (step === 2 && Math.random() < 0.8) || (step === 3 && Math.random() < 0.4)) links.push([i, j]);
                         }
                     }
-                    ctx.globalAlpha = 0.8;
-                    ctx.fillStyle = c1 || '#22d3ee';
-                    for (const n of nodes) {
+                    builtFor = (mobile ? 'm' : tablet ? 't' : 'd') + Math.round(w / 40);
+                }
+
+                function size() {
+                    const nw = hero.clientWidth;
+                    const nh = hero.clientHeight;
+                    if (!nw || !nh) return false;
+                    dpr = Math.min(window.devicePixelRatio || 1, w < 640 ? 1.5 : 2);
+                    w = nw; h = nh;
+                    canvas.width = Math.round(w * dpr);
+                    canvas.height = Math.round(h * dpr);
+                    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+                    const key = (w < 640 ? 'm' : w < 1024 ? 't' : 'd') + Math.round(w / 40);
+                    if (key !== builtFor || !nodes.length) build();
+                    measureCenter();
+                    return true;
+                }
+
+                // baseline wave height (-1..1) at pattern coordinate s
+                function waveAt(s) {
+                    return Math.sin(wave.k1 * s) * 0.62 + Math.sin(wave.k2 * s + 1.3) * 0.38;
+                }
+
+                // dim the network a little behind the text, keep edges vivid
+                function dimAt(x) {
+                    if (w < 640) return 0.55;
+                    const d = Math.abs(x - w / 2) / (w * 0.3);
+                    return d >= 1 ? 1 : 1 - 0.55 * Math.pow(1 - d, 1.3);
+                }
+
+                function draw(t) {
+                    const light = document.body.getAttribute('data-theme') === 'light';
+                    ctx.clearRect(0, 0, w, h);
+                    ctx.globalCompositeOperation = light ? 'source-over' : 'lighter';
+
+                    const A = scale();
+                    const cy = cyPx || h * 0.45;
+                    const amp = A * 0.62;     // wave amplitude
+                    const spread = A * 0.5;   // lane spread
+
+                    // positions
+                    const n = nodes.length;
+                    const px = new Array(n), py = new Array(n);
+                    for (let i = 0; i < n; i++) {
+                        const nd = nodes[i];
+                        const x = ((nd.s + flow) % span + span) % span - MARGIN;
+                        const base = waveAt(nd.s);
+                        const y = cy + base * amp + nd.lane * spread * (0.85 + 0.15 * base)
+                            + Math.sin(t * 0.0007 * nd.speed + nd.phase) * 5;
+                        px[i] = x; py[i] = y;
+                    }
+
+                    // glowing flowing ribbons
+                    const ribbons = [
+                        { off: 0.0, alpha: 0.95, lw: 1.5, ph: 0 },
+                        { off: -0.45, alpha: 0.5, lw: 1.0, ph: 0.35 },
+                        { off: 0.5, alpha: 0.4, lw: 0.9, ph: -0.3 }
+                    ];
+                    ctx.lineJoin = 'round';
+                    ribbons.forEach(r => {
                         ctx.beginPath();
-                        ctx.arc(n.x, n.y, 1.6, 0, Math.PI * 2);
-                        ctx.fill();
+                        for (let x = -MARGIN; x <= w + MARGIN; x += 10) {
+                            const s = ((x + MARGIN - flow) % span + span) % span;
+                            const y = cy + waveAt(s + r.ph * 120) * amp * (1 + r.off * 0.5) + r.off * spread * 0.9;
+                            if (x === -MARGIN) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+                        }
+                        const g = ctx.createLinearGradient(0, 0, w, 0);
+                        const a = light ? r.alpha * 0.8 : r.alpha;
+                        g.addColorStop(0, 'rgba(255,140,40,' + a + ')');
+                        g.addColorStop(0.5, 'rgba(255,125,25,' + (a * 0.3) + ')');
+                        g.addColorStop(1, 'rgba(255,140,40,' + a + ')');
+                        // soft under-glow then crisp line
+                        ctx.strokeStyle = g;
+                        ctx.lineWidth = r.lw * 5;
+                        ctx.globalAlpha = 0.22;
+                        ctx.stroke();
+                        ctx.lineWidth = r.lw;
+                        ctx.globalAlpha = 1;
+                        ctx.stroke();
+                    });
+
+                    // connecting lines
+                    const maxD = Math.max(130, Math.min(w * 0.16, 290));
+                    ctx.lineWidth = 1;
+                    for (let k = 0; k < links.length; k++) {
+                        const i = links[k][0], j = links[k][1];
+                        const dx = px[j] - px[i];
+                        if (dx < 0 || dx > maxD) continue;           // skips wrap-around pairs
+                        const dy = py[j] - py[i];
+                        const d = Math.sqrt(dx * dx + dy * dy);
+                        if (d > maxD) continue;
+                        const mx = (px[i] + px[j]) / 2;
+                        if (mx < -20 || mx > w + 20) continue;
+                        const a = Math.pow(1 - d / maxD, 0.6) * 0.95 * dimAt(mx);
+                        if (a < 0.02) continue;
+                        ctx.strokeStyle = 'rgba(255,128,30,' + (light ? a * 0.8 : a).toFixed(3) + ')';
+                        ctx.beginPath();
+                        ctx.moveTo(px[i], py[i]);
+                        ctx.lineTo(px[j], py[j]);
+                        ctx.stroke();
+                    }
+
+                    // nodes
+                    ctx.globalAlpha = 1;
+                    for (let i = 0; i < n; i++) {
+                        const x = px[i], y = py[i];
+                        if (x < -20 || x > w + 20) continue;
+                        const nd = nodes[i];
+                        const tw = 0.82 + 0.18 * Math.sin(t * 0.0021 * nd.speed + nd.phase);
+                        const dim = dimAt(x);
+                        if (nd.type === 2) {
+                            ctx.globalAlpha = Math.min(1, tw * (0.35 + 0.65 * dim));
+                            ctx.drawImage(glowBig, x - 22, y - 22, 44, 44);
+                            ctx.fillStyle = '#fff4d8';
+                            ctx.beginPath(); ctx.arc(x, y, 3.6, 0, TAU); ctx.fill();
+                        } else if (nd.type === 1) {
+                            ctx.globalAlpha = Math.min(1, tw * (0.3 + 0.7 * dim));
+                            ctx.drawImage(glowSmall, x - 9, y - 9, 18, 18);
+                            ctx.fillStyle = '#ff9a30';
+                            ctx.beginPath(); ctx.arc(x, y, 2.1, 0, TAU); ctx.fill();
+                        } else {
+                            ctx.globalAlpha = 0.85 * tw * dim;
+                            ctx.fillStyle = '#ff6a10';
+                            ctx.beginPath(); ctx.arc(x, y, 1.3, 0, TAU); ctx.fill();
+                        }
                     }
                     ctx.globalAlpha = 1;
-                    raf = requestAnimationFrame(draw);
+                    ctx.globalCompositeOperation = 'source-over';
                 }
 
-                resize();
-                draw();
-                window.addEventListener('resize', resize);
-                if (!isTouch) {
-                    hero.addEventListener('mousemove', (e) => {
-                        const rect = hero.getBoundingClientRect();
-                        mouse.x = e.clientX - rect.left;
-                        mouse.y = e.clientY - rect.top;
+                function frame(ts) {
+                    if (!running) return;
+                    rafId = requestAnimationFrame(frame);
+                    const dt = Math.min(64, ts - (lastTs || ts));
+                    lastTs = ts;
+                    const speed = Math.max(34, w * 0.03);              // px / second, left -> right
+                    flow += speed * dt / 1000;
+                    draw(ts);
+                }
+
+                function start() {
+                    if (running || !visible || document.hidden) return;
+                    running = true;
+                    lastTs = 0;
+                    rafId = requestAnimationFrame(frame);
+                }
+                function stop() {
+                    running = false;
+                    cancelAnimationFrame(rafId);
+                }
+
+                if (size()) {
+                    flow = Math.random() * span;
+                    if (reduceMotion) {
+                        draw(0);                                        // static network, no motion
+                    } else {
+                        start();
+                    }
+                }
+
+                // Resize: keep the canvas edge-to-edge with the hero
+                let resizeTimer;
+                const onResize = () => {
+                    clearTimeout(resizeTimer);
+                    resizeTimer = setTimeout(() => {
+                        size();
+                        if (reduceMotion) draw(0);
+                    }, 120);
+                };
+                window.addEventListener('resize', onResize);
+                window.addEventListener('orientationchange', onResize);
+                window.addEventListener('load', onResize);
+                if (document.fonts && document.fonts.ready) document.fonts.ready.then(onResize);
+                if ('ResizeObserver' in window) new ResizeObserver(onResize).observe(hero);
+
+                if (!reduceMotion) {
+                    // Pause when off-screen or tab hidden to save battery
+                    if ('IntersectionObserver' in window) {
+                        new IntersectionObserver((entries) => {
+                            visible = entries[0].isIntersecting;
+                            visible ? start() : stop();
+                        }).observe(hero);
+                    }
+                    document.addEventListener('visibilitychange', () => {
+                        document.hidden ? stop() : start();
                     });
-                    hero.addEventListener('mouseleave', () => { mouse.x = null; mouse.y = null; });
                 }
             }
+
+
+
 
             /* ---------- 2. Magnetic buttons (desktop only) ---------- */
             if (!isTouch && !reduceMotion) {
@@ -1306,7 +1690,7 @@
             }
 
             /* ---------- 4. Navbar: glass-on-scroll + active link ---------- */
-            const nav = document.querySelector('nav');
+            const nav = document.querySelector('.site-header');
             const onScroll = () => {
                 nav.classList.toggle('nav-scrolled', window.scrollY > 40);
             };
